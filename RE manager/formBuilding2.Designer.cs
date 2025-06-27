@@ -39,9 +39,9 @@
             button2 = new Button();
             pnBuilding3 = new Panel();
             button3 = new Button();
-            panel2 = new Panel();
             panel3 = new Panel();
             button4 = new Button();
+            parentPanel = new Panel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnHam).BeginInit();
             sidebar.SuspendLayout();
@@ -171,14 +171,6 @@
             button3.TextAlign = ContentAlignment.MiddleLeft;
             button3.UseVisualStyleBackColor = false;
             // 
-            // panel2
-            // 
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(250, 39);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1124, 686);
-            panel2.TabIndex = 8;
-            // 
             // panel3
             // 
             panel3.Controls.Add(button4);
@@ -203,13 +195,22 @@
             button4.Text = "                Dashboard";
             button4.TextAlign = ContentAlignment.MiddleLeft;
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
+            // 
+            // parentPanel
+            // 
+            parentPanel.Dock = DockStyle.Fill;
+            parentPanel.Location = new Point(250, 39);
+            parentPanel.Name = "parentPanel";
+            parentPanel.Size = new Size(1124, 686);
+            parentPanel.TabIndex = 8;
             // 
             // formBuilding2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1374, 725);
-            Controls.Add(panel2);
+            Controls.Add(parentPanel);
             Controls.Add(sidebar);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
@@ -239,7 +240,7 @@
         private Button button2;
         private Panel pnBuilding3;
         private Button button3;
-        private Panel panel2;
+        private Panel parentPanel;
         private Panel panel3;
         private Button button4;
     }
