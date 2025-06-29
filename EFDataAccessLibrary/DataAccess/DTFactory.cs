@@ -21,7 +21,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Build();
 
             // 2. Read the connection string by name:
-            string connectionString = config.GetConnectionString("EFDemoDb");
+            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EFDemoDb;Integrated Security=True;";
             if (string.IsNullOrWhiteSpace(connectionString))
             {
                 // Fallback to App.config if you’re using ConfigurationManager instead:

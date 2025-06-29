@@ -28,28 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
-            Events = new DataGridViewTextBoxColumn();
             monthCalendar1 = new MonthCalendar();
+            bindingSource1 = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Events });
             dataGridView1.Location = new Point(29, 42);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(757, 445);
             dataGridView1.TabIndex = 4;
-            // 
-            // Events
-            // 
-            Events.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Events.HeaderText = "Events";
-            Events.MinimumWidth = 6;
-            Events.Name = "Events";
             // 
             // monthCalendar1
             // 
@@ -67,14 +61,16 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "formDashboardDisplay";
             Text = "formDashboardDisplay";
+            Load += formDashboardDisplay_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn Events;
         private MonthCalendar monthCalendar1;
+        private BindingSource bindingSource1;
     }
 }

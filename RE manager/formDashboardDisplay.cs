@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EFDataAccessLibrary.DataAccess;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,6 +32,27 @@ namespace RE_manager
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
 
+        }
+
+        private void formDashboardDisplay_Load(object sender, EventArgs e)
+        {
+            dataGridView1.AutoGenerateColumns = true;
+            dataGridView1.DataSource = bindingSource1;
+
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            using (var ctx = new PeopleContextFactory().CreateDbContext(null))
+            {
+                var people = ctx.People
+                    .Include(p => p.EmailAddresses)
+                    .Include(p => p.Addresses)
+                    .ToList();
+
+                bindingSource1.DataSource = people;
+            }
         }
     }
 }
