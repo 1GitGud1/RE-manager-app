@@ -48,8 +48,8 @@ namespace RE_manager
             using (var ctx = new PeopleContextFactory().CreateDbContext(null))
             {
                 var people = ctx.People
-                    .Include(p => p.EmailAddresses)
-                    .Include(p => p.Addresses)
+                    .Include(a => a.EmailAddresses)
+                    .Include(e => e.Addresses)
                     .ToList();
 
                 bindingSource1.DataSource = people;

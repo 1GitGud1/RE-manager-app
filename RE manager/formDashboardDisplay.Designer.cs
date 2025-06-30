@@ -30,9 +30,11 @@
         {
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
+            peopleContextBindingSource = new BindingSource(components);
             monthCalendar1 = new MonthCalendar();
             bindingSource1 = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)peopleContextBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
             // 
@@ -45,6 +47,10 @@
             dataGridView1.Size = new Size(757, 445);
             dataGridView1.TabIndex = 4;
             dataGridView1.RowValidated += dataGridView1_RowValidated;
+            // 
+            // peopleContextBindingSource
+            // 
+            peopleContextBindingSource.DataSource = typeof(EFDataAccessLibrary.DataAccess.PeopleContext);
             // 
             // monthCalendar1
             // 
@@ -64,6 +70,7 @@
             Text = "formDashboardDisplay";
             Load += formDashboardDisplay_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)peopleContextBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
         }
@@ -73,5 +80,6 @@
         private DataGridView dataGridView1;
         private MonthCalendar monthCalendar1;
         private BindingSource bindingSource1;
+        private BindingSource peopleContextBindingSource;
     }
 }

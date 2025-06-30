@@ -15,6 +15,7 @@ namespace EFDataAccessLibrary.DataAccess
         public DbSet<Person> People { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Email> EmailAddresses { get; set; }
+        public DbSet<Apartment> Apartments2 { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
