@@ -25,5 +25,11 @@ namespace EFDataAccessLibrary.Models
         [Required]
         [Column(TypeName = "date")]
         public DateTime ContractEndDate { get; set; }
+
+        //Amount
+
+        //servicing page
+
+        //cheque check page
     }
 }
