@@ -44,6 +44,7 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(757, 445);
             dataGridView1.TabIndex = 4;
+            dataGridView1.RowValidated += dataGridView1_RowValidated;
             // 
             // monthCalendar1
             // 

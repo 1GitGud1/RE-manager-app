@@ -1,4 +1,5 @@
 ﻿using EFDataAccessLibrary.DataAccess;
+using EFDataAccessLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,16 @@ namespace RE_manager
 
                 bindingSource1.DataSource = people;
             }
+        }
+
+        private void dataGridView1_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            if (bindingSource1.Current is Person edited)
+                using (var ctx = new PeopleContextFactory().CreateDbContext(null))
+                {
+                    ctx.People.Update(edited);
+                    ctx.SaveChanges();
+                }
         }
     }
 }
