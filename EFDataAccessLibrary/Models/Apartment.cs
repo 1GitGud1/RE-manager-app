@@ -27,6 +27,9 @@ namespace EFDataAccessLibrary.Models
         public DateTime ContractEndDate { get; set; }
 
         //Amount
+        [Required]
+        public int Amount { get; set; }
+
 
         //servicing page
 

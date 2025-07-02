@@ -17,6 +17,14 @@ namespace EFDataAccessLibrary.DataAccess
         public DbSet<Email> EmailAddresses { get; set; }
         public DbSet<Apartment> Apartments2 { get; set; }
 
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Apartment>(entity =>
+        //    {
+        //    // Configure ApartmentNumber as PK
+        //    entity.HasKey(a => a.ApartmentNumber);
+        //    });
+        //}
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -30,6 +38,6 @@ namespace EFDataAccessLibrary.DataAccess
                 optionsBuilder.UseSqlServer(connectionString);
             }
         }
-            //=> optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EFDemoDb;Integrated Security=True;");
+        //=> optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EFDemoDb;Integrated Security=True;");
     }
 }
