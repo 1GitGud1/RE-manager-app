@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EFDataAccessLibrary.Migrations;
 
 namespace EFDataAccessLibrary.DataAccess
 {
@@ -16,15 +17,7 @@ namespace EFDataAccessLibrary.DataAccess
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Email> EmailAddresses { get; set; }
         public DbSet<Apartment> Apartments2 { get; set; }
-
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Apartment>(entity =>
-        //    {
-        //    // Configure ApartmentNumber as PK
-        //    entity.HasKey(a => a.ApartmentNumber);
-        //    });
-        //}
+        public DbSet<ApartmentService> ApartmentServices2 { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

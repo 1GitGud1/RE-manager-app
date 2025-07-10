@@ -20,6 +20,13 @@ namespace RE_manager
             InitializeComponent();
         }
 
+        private formBuilding2 building2 = null;
+        public formApartmentsDisplay2(Form callingForm)
+        {
+            building2 = callingForm as formBuilding2;
+            InitializeComponent();
+        }
+
         private void formApartmentsDisplay2_Load(object sender, EventArgs e)
         {
             dataGridView1.AutoGenerateColumns = true;
@@ -60,6 +67,22 @@ namespace RE_manager
 
                     ctx.SaveChanges();
                 }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            btnViewServices.Enabled = (dataGridView1.CurrentRow != null);
+        }
+
+        private void btnViewServices_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow?.DataBoundItem is Apartment apt)
+            {
+                this.Hide();
+                formApartmentSevicesDisplay2 apartmentServicesDisplay = new formApartmentSevicesDisplay2(apt.ApartmentNumber) { TopLevel = false, TopMost = true };
+                apartmentServicesDisplay.FormBorderStyle = FormBorderStyle.None;
+                building2.LoadFormInPanel(apartmentServicesDisplay);
+            }
         }
     }
 }

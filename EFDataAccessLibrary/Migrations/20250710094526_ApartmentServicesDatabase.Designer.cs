@@ -4,6 +4,7 @@ using EFDataAccessLibrary.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFDataAccessLibrary.Migrations
 {
     [DbContext(typeof(PeopleContext))]
-    partial class PeopleContextModelSnapshot : ModelSnapshot
+    [Migration("20250710094526_ApartmentServicesDatabase")]
+    partial class ApartmentServicesDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -92,10 +95,7 @@ namespace EFDataAccessLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApartmentNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ApartmentNumber1")
+                    b.Property<int?>("ApartmentNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -108,7 +108,7 @@ namespace EFDataAccessLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApartmentNumber1");
+                    b.HasIndex("ApartmentNumber");
 
                     b.ToTable("ApartmentServices2");
                 });
@@ -173,7 +173,7 @@ namespace EFDataAccessLibrary.Migrations
                 {
                     b.HasOne("EFDataAccessLibrary.Models.Apartment", null)
                         .WithMany("ApartmentServices")
-                        .HasForeignKey("ApartmentNumber1");
+                        .HasForeignKey("ApartmentNumber");
                 });
 
             modelBuilder.Entity("EFDataAccessLibrary.Models.Email", b =>

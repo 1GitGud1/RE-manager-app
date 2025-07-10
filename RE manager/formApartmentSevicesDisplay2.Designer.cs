@@ -1,6 +1,6 @@
 ﻿namespace RE_manager
 {
-    partial class formApartmentsDisplay2
+    partial class formApartmentSevicesDisplay2
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,6 @@
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
             bindingSource1 = new BindingSource(components);
-            btnViewServices = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             SuspendLayout();
@@ -39,35 +38,22 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1108, 564);
+            dataGridView1.Size = new Size(1370, 809);
             dataGridView1.TabIndex = 0;
-            dataGridView1.RowValidated += dataGridView1_RowValidated;
-            dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             // 
-            // btnViewServices
-            // 
-            btnViewServices.Enabled = false;
-            btnViewServices.Location = new Point(12, 570);
-            btnViewServices.Name = "btnViewServices";
-            btnViewServices.Size = new Size(175, 29);
-            btnViewServices.TabIndex = 1;
-            btnViewServices.Text = "View Service Log";
-            btnViewServices.UseVisualStyleBackColor = true;
-            btnViewServices.Click += btnViewServices_Click;
-            // 
-            // formApartmentsDisplay2
+            // formApartmentSevicesDisplay2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1108, 625);
-            Controls.Add(btnViewServices);
+            ClientSize = new Size(1370, 809);
             Controls.Add(dataGridView1);
-            Name = "formApartmentsDisplay2";
-            Text = "formApartmentsDisplay2";
-            Load += formApartmentsDisplay2_Load;
+            Name = "formApartmentSevicesDisplay2";
+            Text = "formApartmentSevicesDisplay2";
+            Load += formApartmentSevicesDisplay2_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);
@@ -77,6 +63,5 @@
 
         private DataGridView dataGridView1;
         private BindingSource bindingSource1;
-        private Button btnViewServices;
     }
 }

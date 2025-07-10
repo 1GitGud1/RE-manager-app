@@ -19,5 +19,9 @@ namespace EFDataAccessLibrary.Models
         [Required]
         [Column(TypeName = "date")]
         public DateTime ServiceDate { get; set; }
+
+        [Required]
+        public int ApartmentNumber { get; set; }
+        Apartment Apartment { get; set; }
     }
 }
