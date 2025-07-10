@@ -24,7 +24,7 @@ namespace RE_manager
             formApartmentsDisplay2 apartmentsDisplay = new formApartmentsDisplay2() { TopLevel = false, TopMost = true };
             apartmentsDisplay.FormBorderStyle = FormBorderStyle.None;
             parentPanel.Controls.Add(apartmentsDisplay);
-            apartmentsDisplay.Show();
+            apartmentsDisplay.Show();   
         }
 
         private void button4_Click(object sender, EventArgs e)

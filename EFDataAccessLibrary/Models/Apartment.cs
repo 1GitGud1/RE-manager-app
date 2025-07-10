@@ -30,6 +30,8 @@ namespace EFDataAccessLibrary.Models
         [Required]
         public int Amount { get; set; }
 
+        public List<ApartmentService> ApartmentServices { get; set; } = new List<ApartmentService>();
+
 
         //servicing page
 
