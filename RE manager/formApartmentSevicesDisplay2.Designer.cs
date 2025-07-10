@@ -44,6 +44,7 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(1370, 809);
             dataGridView1.TabIndex = 0;
+            dataGridView1.RowValidated += dataGridView1_RowValidated;
             // 
             // formApartmentSevicesDisplay2
             // 

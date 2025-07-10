@@ -1,4 +1,5 @@
 ﻿using EFDataAccessLibrary.DataAccess;
+using EFDataAccessLibrary.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +26,7 @@ namespace RE_manager
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = bindingSource1;
             LoadData();
-            dataGridView1.Columns["ApartmentNumber"].Visible = false;
+            //dataGridView1.Columns["ApartmentNumber"].Visible = false;
         }
 
         private void LoadData()
@@ -41,5 +42,16 @@ namespace RE_manager
             }
         }
 
+        private void dataGridView1_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            if (bindingSource1.Current is ApartmentService edited)
+            {
+                using (var ctx = new PeopleContextFactory().CreateDbContext(null))
+                {
+                    ctx.ApartmentServices2.Update(edited);
+                    ctx.SaveChanges();
+                }
+            }
+        }
     }
 }
