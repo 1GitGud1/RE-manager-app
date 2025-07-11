@@ -26,7 +26,7 @@ namespace RE_manager
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = bindingSource1;
             LoadData();
-            //dataGridView1.Columns["ApartmentNumber"].Visible = false;
+            dataGridView1.Columns["ApartmentNumber"].Visible = false;
         }
 
         private void LoadData()
@@ -48,6 +48,7 @@ namespace RE_manager
             {
                 using (var ctx = new PeopleContextFactory().CreateDbContext(null))
                 {
+                    edited.ApartmentNumber = _apartmentNumber;
                     ctx.ApartmentServices2.Update(edited);
                     ctx.SaveChanges();
                 }
