@@ -32,9 +32,12 @@
             dataGridView1 = new DataGridView();
             bindingSource1 = new BindingSource(components);
             btnViewServices = new Button();
-            btnViewCheques = new Button();
+            dataGridView2 = new DataGridView();
+            bindingSource2 = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
@@ -43,7 +46,7 @@
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1108, 564);
+            dataGridView1.Size = new Size(961, 564);
             dataGridView1.TabIndex = 0;
             dataGridView1.RowValidated += dataGridView1_RowValidated;
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
@@ -59,22 +62,21 @@
             btnViewServices.UseVisualStyleBackColor = true;
             btnViewServices.Click += btnViewServices_Click;
             // 
-            // btnViewCheques
+            // dataGridView2
             // 
-            btnViewCheques.Location = new Point(193, 570);
-            btnViewCheques.Name = "btnViewCheques";
-            btnViewCheques.Size = new Size(175, 29);
-            btnViewCheques.TabIndex = 2;
-            btnViewCheques.Text = "View Cheques";
-            btnViewCheques.UseVisualStyleBackColor = true;
-            btnViewCheques.Click += btnViewCheques_Click;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(967, 0);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 51;
+            dataGridView2.Size = new Size(389, 564);
+            dataGridView2.TabIndex = 3;
             // 
             // formApartmentsDisplay2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1108, 625);
-            Controls.Add(btnViewCheques);
+            ClientSize = new Size(1356, 678);
+            Controls.Add(dataGridView2);
             Controls.Add(btnViewServices);
             Controls.Add(dataGridView1);
             Name = "formApartmentsDisplay2";
@@ -82,6 +84,8 @@
             Load += formApartmentsDisplay2_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSource2).EndInit();
             ResumeLayout(false);
         }
 
@@ -90,6 +94,7 @@
         private DataGridView dataGridView1;
         private BindingSource bindingSource1;
         private Button btnViewServices;
-        private Button btnViewCheques;
+        private DataGridView dataGridView2;
+        private BindingSource bindingSource2;
     }
 }

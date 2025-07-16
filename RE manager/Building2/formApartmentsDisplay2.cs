@@ -1,7 +1,6 @@
 ﻿using EFDataAccessLibrary.DataAccess;
 using EFDataAccessLibrary.Models;
 using Microsoft.EntityFrameworkCore;
-using RE_manager.Building2;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,7 +32,13 @@ namespace RE_manager
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = bindingSource1;
 
+            dataGridView2.AutoGenerateColumns = true;
+            dataGridView2.DataSource = bindingSource2;
+
             LoadData();
+
+            dataGridView2.Columns["ApartmentNumber"].Visible = false;
+            dataGridView2.Columns["Id"].Visible = false;
         }
 
         private void LoadData()
@@ -43,6 +48,19 @@ namespace RE_manager
                 var apartments = ctx.Apartments2.ToList();
 
                 bindingSource1.DataSource = apartments;
+            }
+        }
+
+        private void LoadCheques(int _apartmentNumber)
+        {
+            using (var ctx = new PeopleContextFactory().CreateDbContext(null))
+            {
+                var cheques = ctx.ApartmentCheques2
+                    .Where(s => s.ApartmentNumber == _apartmentNumber)
+                    .OrderBy(s => s.DueDate)
+                    .ToList();
+
+                bindingSource2.DataSource = cheques;
             }
         }
 
@@ -73,6 +91,11 @@ namespace RE_manager
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             btnViewServices.Enabled = (dataGridView1.CurrentRow != null);
+
+            if (dataGridView1.CurrentRow?.DataBoundItem is Apartment apt)
+            {
+                LoadCheques(apt.ApartmentNumber);
+            }
         }
 
         private void btnViewServices_Click(object sender, EventArgs e)
@@ -83,17 +106,6 @@ namespace RE_manager
                 formApartmentSevicesDisplay2 apartmentServicesDisplay = new formApartmentSevicesDisplay2(apt.ApartmentNumber) { TopLevel = false, TopMost = true };
                 apartmentServicesDisplay.FormBorderStyle = FormBorderStyle.None;
                 building2.LoadFormInPanel(apartmentServicesDisplay);
-            }
-        }
-
-        private void btnViewCheques_Click(object sender, EventArgs e)
-        {
-            if (dataGridView1.CurrentRow?.DataBoundItem is Apartment apt)
-            {
-                this.Hide();
-                formApartmentChequesDisplay2 apartmentChequesDisplay = new formApartmentChequesDisplay2(apt.ApartmentNumber) { TopLevel = false, TopMost = true };
-                apartmentChequesDisplay.FormBorderStyle = FormBorderStyle.None;
-                building2.LoadFormInPanel(apartmentChequesDisplay);
             }
         }
     }

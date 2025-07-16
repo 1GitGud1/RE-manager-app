@@ -26,11 +26,15 @@ namespace EFDataAccessLibrary.Models
         [Column(TypeName = "date")]
         public DateTime ContractEndDate { get; set; }
 
+        [Required]
+        public int Deposit { get; set; }
+
         //Amount
         [Required]
         public int Amount { get; set; }
 
         public List<ApartmentService> ApartmentServices { get; set; } = new List<ApartmentService>();
+        public List<ApartmentCheque> ApartmentCheques { get; set; } = new List<ApartmentCheque>();
 
 
         //servicing page
