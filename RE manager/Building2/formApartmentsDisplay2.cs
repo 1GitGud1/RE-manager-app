@@ -1,6 +1,7 @@
 ﻿using EFDataAccessLibrary.DataAccess;
 using EFDataAccessLibrary.Models;
 using Microsoft.EntityFrameworkCore;
+using RE_manager.Building2;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -82,6 +83,17 @@ namespace RE_manager
                 formApartmentSevicesDisplay2 apartmentServicesDisplay = new formApartmentSevicesDisplay2(apt.ApartmentNumber) { TopLevel = false, TopMost = true };
                 apartmentServicesDisplay.FormBorderStyle = FormBorderStyle.None;
                 building2.LoadFormInPanel(apartmentServicesDisplay);
+            }
+        }
+
+        private void btnViewCheques_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow?.DataBoundItem is Apartment apt)
+            {
+                this.Hide();
+                formApartmentChequesDisplay2 apartmentChequesDisplay = new formApartmentChequesDisplay2(apt.ApartmentNumber) { TopLevel = false, TopMost = true };
+                apartmentChequesDisplay.FormBorderStyle = FormBorderStyle.None;
+                building2.LoadFormInPanel(apartmentChequesDisplay);
             }
         }
     }
