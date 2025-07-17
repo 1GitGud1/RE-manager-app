@@ -27,5 +27,7 @@ namespace EFDataAccessLibrary.Models
         [Required]
         [MaxLength(50)]
         public int Amount { get; set; }
+
+        public List<ContractDue> ContractDues { get; set; } = new List<ContractDue>();
     }
 }

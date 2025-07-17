@@ -20,6 +20,7 @@ namespace EFDataAccessLibrary.DataAccess
         public DbSet<ApartmentService> ApartmentServices2 { get; set; }
         public DbSet<ApartmentCheque> ApartmentCheques2 { get; set; }
         public DbSet<Contract> Contracts2 { get; set; }
+        public DbSet<ContractDue> ContractDues2 { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

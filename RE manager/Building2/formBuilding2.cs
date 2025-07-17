@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RE_manager.Building2;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,7 @@ namespace RE_manager
     public partial class formBuilding2 : Form
     {
         formDashboard dashboard;
+        Form currentDisplay;
 
         public formBuilding2()
         {
@@ -24,7 +26,18 @@ namespace RE_manager
             formApartmentsDisplay2 apartmentsDisplay = new formApartmentsDisplay2(this) { TopLevel = false, TopMost = true };
             apartmentsDisplay.FormBorderStyle = FormBorderStyle.None;
             parentPanel.Controls.Add(apartmentsDisplay);
-            apartmentsDisplay.Show();   
+            apartmentsDisplay.Show();
+            currentDisplay = apartmentsDisplay;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            currentDisplay.Hide();
+            formContractsDisplay2 contractsDisplay = new formContractsDisplay2() { TopLevel = false, TopMost = true };
+            contractsDisplay.FormBorderStyle = FormBorderStyle.None;
+            parentPanel.Controls.Add(contractsDisplay);
+            contractsDisplay.Show();
+            currentDisplay = contractsDisplay;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -52,6 +65,7 @@ namespace RE_manager
         {
             parentPanel.Controls.Add(form);
             form.Show();
+            currentDisplay = form;
         }
     }
 }

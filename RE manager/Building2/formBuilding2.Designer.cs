@@ -170,6 +170,7 @@
             button3.Text = "                Contracts";
             button3.TextAlign = ContentAlignment.MiddleLeft;
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // panel3
             // 
