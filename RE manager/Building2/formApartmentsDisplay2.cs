@@ -15,6 +15,7 @@ namespace RE_manager
 {
     public partial class formApartmentsDisplay2 : Form
     {
+        private int _apartmentNumber;
         public formApartmentsDisplay2()
         {
             InitializeComponent();
@@ -88,12 +89,15 @@ namespace RE_manager
                 }
         }
 
+
+
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             btnViewServices.Enabled = (dataGridView1.CurrentRow != null);
 
             if (dataGridView1.CurrentRow?.DataBoundItem is Apartment apt)
             {
+                _apartmentNumber = apt.ApartmentNumber;
                 LoadCheques(apt.ApartmentNumber);
             }
         }
@@ -106,6 +110,19 @@ namespace RE_manager
                 formApartmentSevicesDisplay2 apartmentServicesDisplay = new formApartmentSevicesDisplay2(apt.ApartmentNumber) { TopLevel = false, TopMost = true };
                 apartmentServicesDisplay.FormBorderStyle = FormBorderStyle.None;
                 building2.LoadFormInPanel(apartmentServicesDisplay);
+            }
+        }
+
+        private void dataGridView2_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            if (bindingSource2.Current is ApartmentCheque edited)
+            {
+                using (var ctx = new PeopleContextFactory().CreateDbContext(null))
+                {
+                    edited.ApartmentNumber = _apartmentNumber;
+                    ctx.ApartmentCheques2.Update(edited);
+                    ctx.SaveChanges();
+                }
             }
         }
     }

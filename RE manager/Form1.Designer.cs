@@ -33,7 +33,7 @@ partial class Form1
         // Form1
         // 
         AutoScaleMode = AutoScaleMode.None;
-        ClientSize = new Size(1592, 705);
+        ClientSize = new Size(1611, 720);
         IsMdiContainer = true;
         Name = "Form1";
         Text = "Form1";

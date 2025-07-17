@@ -27,10 +27,12 @@ namespace EFDataAccessLibrary.Models
         public DateTime ContractEndDate { get; set; }
 
         [Required]
+        [MaxLength(50)]
         public int Deposit { get; set; }
 
         //Amount
         [Required]
+        [MaxLength(50)]
         public int Amount { get; set; }
 
         public List<ApartmentService> ApartmentServices { get; set; } = new List<ApartmentService>();

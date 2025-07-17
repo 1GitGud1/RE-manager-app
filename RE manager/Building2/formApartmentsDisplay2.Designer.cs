@@ -70,6 +70,7 @@
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.Size = new Size(389, 564);
             dataGridView2.TabIndex = 3;
+            dataGridView2.RowValidated += dataGridView2_RowValidated;
             // 
             // formApartmentsDisplay2
             // 
