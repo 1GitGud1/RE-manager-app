@@ -1,6 +1,7 @@
 ﻿using EFDataAccessLibrary.DataAccess;
 using EFDataAccessLibrary.Models;
 using Microsoft.EntityFrameworkCore;
+using RE_manager.Building2;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,6 +38,8 @@ namespace RE_manager
             dataGridView2.DataSource = bindingSource2;
 
             LoadData();
+
+            dataGridView1.Columns["PPM"].Visible = false;
 
             dataGridView2.Columns["ApartmentNumber"].Visible = false;
             dataGridView2.Columns["Id"].Visible = false;
@@ -128,7 +131,10 @@ namespace RE_manager
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            formApartmentPPMsDisplay2 apartmentPPMsDisplay = new formApartmentPPMsDisplay2() { TopLevel = false, TopMost = true };
+            apartmentPPMsDisplay.FormBorderStyle = FormBorderStyle.None;
+            building2.LoadFormInPanel(apartmentPPMsDisplay);
         }
     }
 }
