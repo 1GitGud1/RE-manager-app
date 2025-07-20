@@ -4,6 +4,7 @@ using EFDataAccessLibrary.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFDataAccessLibrary.Migrations
 {
     [DbContext(typeof(PeopleContext))]
-    partial class PeopleContextModelSnapshot : ModelSnapshot
+    [Migration("20250719101454_PPMsAdded")]
+    partial class PPMsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,52 +124,6 @@ namespace EFDataAccessLibrary.Migrations
                     b.HasIndex("ApartmentNumber1");
 
                     b.ToTable("ApartmentCheques2");
-                });
-
-            modelBuilder.Entity("EFDataAccessLibrary.Models.ApartmentPPM", b =>
-                {
-                    b.Property<int>("ApartmentNumber")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Q1Date")
-                        .HasColumnType("date");
-
-                    b.Property<bool>("Q1Done")
-                        .HasColumnType("bit");
-
-                    b.Property<TimeSpan>("Q1Time")
-                        .HasColumnType("time");
-
-                    b.Property<DateTime>("Q2Date")
-                        .HasColumnType("date");
-
-                    b.Property<bool>("Q2Done")
-                        .HasColumnType("bit");
-
-                    b.Property<TimeSpan>("Q2Time")
-                        .HasColumnType("time");
-
-                    b.Property<DateTime>("Q3Date")
-                        .HasColumnType("date");
-
-                    b.Property<bool>("Q3Done")
-                        .HasColumnType("bit");
-
-                    b.Property<TimeSpan>("Q3Time")
-                        .HasColumnType("time");
-
-                    b.Property<DateTime>("Q4Date")
-                        .HasColumnType("date");
-
-                    b.Property<bool>("Q4Done")
-                        .HasColumnType("bit");
-
-                    b.Property<TimeSpan>("Q4Time")
-                        .HasColumnType("time");
-
-                    b.HasKey("ApartmentNumber");
-
-                    b.ToTable("ApartmentPPMs2");
                 });
 
             modelBuilder.Entity("EFDataAccessLibrary.Models.ApartmentService", b =>
@@ -295,11 +252,6 @@ namespace EFDataAccessLibrary.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.HasKey("PPMId");
 
                     b.ToTable("PPMs2");
@@ -313,7 +265,7 @@ namespace EFDataAccessLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime>("Date")
                         .HasColumnType("date");
 
                     b.Property<bool>("IsDone")
@@ -321,9 +273,6 @@ namespace EFDataAccessLibrary.Migrations
 
                     b.Property<int>("PPMId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("date");
 
                     b.HasKey("Id");
 
@@ -372,17 +321,6 @@ namespace EFDataAccessLibrary.Migrations
                         .HasForeignKey("ApartmentNumber1");
                 });
 
-            modelBuilder.Entity("EFDataAccessLibrary.Models.ApartmentPPM", b =>
-                {
-                    b.HasOne("EFDataAccessLibrary.Models.Apartment", "Apartment")
-                        .WithOne("PPM")
-                        .HasForeignKey("EFDataAccessLibrary.Models.ApartmentPPM", "ApartmentNumber")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Apartment");
-                });
-
             modelBuilder.Entity("EFDataAccessLibrary.Models.ApartmentService", b =>
                 {
                     b.HasOne("EFDataAccessLibrary.Models.Apartment", null)
@@ -420,8 +358,6 @@ namespace EFDataAccessLibrary.Migrations
                     b.Navigation("ApartmentCheques");
 
                     b.Navigation("ApartmentServices");
-
-                    b.Navigation("PPM");
                 });
 
             modelBuilder.Entity("EFDataAccessLibrary.Models.Contract", b =>

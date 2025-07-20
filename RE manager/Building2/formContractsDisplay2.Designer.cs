@@ -56,7 +56,7 @@
             dataGridView2.Location = new Point(967, 0);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(389, 678);
+            dataGridView2.Size = new Size(390, 678);
             dataGridView2.TabIndex = 4;
             dataGridView2.RowValidated += dataGridView2_RowValidated;
             // 

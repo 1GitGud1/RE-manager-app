@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,12 @@ namespace EFDataAccessLibrary.Models
         public string Description { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public int Deposit { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime StartDate { get; set; }
+
+        [Required]
+        [Column(TypeName = "date")]
+        public DateTime EndDate { get; set; }
 
         //Amount
         [Required]

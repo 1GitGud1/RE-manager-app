@@ -120,6 +120,7 @@
             button1.Text = "                Tenants";
             button1.TextAlign = ContentAlignment.MiddleLeft;
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // pnBuilding1
             // 
@@ -145,6 +146,7 @@
             button2.Text = "                PPMs";
             button2.TextAlign = ContentAlignment.MiddleLeft;
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // pnBuilding3
             // 

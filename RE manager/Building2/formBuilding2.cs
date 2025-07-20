@@ -29,6 +29,25 @@ namespace RE_manager
             apartmentsDisplay.Show();
             currentDisplay = apartmentsDisplay;
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            currentDisplay.Hide();
+            formApartmentsDisplay2 apartmentsDisplay = new formApartmentsDisplay2(this) { TopLevel = false, TopMost = true };
+            apartmentsDisplay.FormBorderStyle = FormBorderStyle.None;
+            parentPanel.Controls.Add(apartmentsDisplay);
+            apartmentsDisplay.Show();
+            currentDisplay = apartmentsDisplay;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            currentDisplay.Hide();
+            formPPMsDisplay2 ppmsDisplay = new formPPMsDisplay2() { TopLevel = false, TopMost = true };
+            ppmsDisplay.FormBorderStyle = FormBorderStyle.None;
+            parentPanel.Controls.Add(ppmsDisplay);
+            ppmsDisplay.Show();
+            currentDisplay = ppmsDisplay;
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {

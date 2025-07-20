@@ -26,6 +26,8 @@ namespace EFDataAccessLibrary.Models
         [Column(TypeName = "date")]
         public DateTime ContractEndDate { get; set; }
 
+        public bool Ejari { get; set; }
+
         [Required]
         [MaxLength(50)]
         public int Deposit { get; set; }
@@ -37,6 +39,8 @@ namespace EFDataAccessLibrary.Models
 
         public List<ApartmentService> ApartmentServices { get; set; } = new List<ApartmentService>();
         public List<ApartmentCheque> ApartmentCheques { get; set; } = new List<ApartmentCheque>();
+
+        public ApartmentPPM? PPM { get; set; }
 
 
         //servicing page

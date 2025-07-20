@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 
 namespace EFDataAccessLibrary.Models
 {
-    public class ApartmentCheque
+    public class PPMtime
     {
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public int Amount { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime StartDate { get; set; }
 
         [Required]
         [Column(TypeName = "date")]
-        public DateTime DueDate { get; set; }
+        public DateTime EndDate { get; set; }
 
-        public bool IsCashed { get; set; }
+        public bool IsDone { get; set; }
 
         [Required]
-        public int ApartmentNumber { get; set; }
-        Apartment Apartment { get; set; }
+        public int PPMId { get; set; }
+        PPM PPM { get; set; }
     }
 }

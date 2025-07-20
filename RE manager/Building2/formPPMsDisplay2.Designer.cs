@@ -1,6 +1,6 @@
-﻿namespace RE_manager
+﻿namespace RE_manager.Building2
 {
-    partial class formApartmentsDisplay2
+    partial class formPPMsDisplay2
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,12 @@
         {
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
-            bindingSource1 = new BindingSource(components);
-            btnViewServices = new Button();
             dataGridView2 = new DataGridView();
+            bindingSource1 = new BindingSource(components);
             bindingSource2 = new BindingSource(components);
-            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
             SuspendLayout();
             // 
@@ -47,21 +45,10 @@
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(961, 564);
-            dataGridView1.TabIndex = 0;
+            dataGridView1.Size = new Size(961, 678);
+            dataGridView1.TabIndex = 2;
             dataGridView1.RowValidated += dataGridView1_RowValidated;
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
-            // 
-            // btnViewServices
-            // 
-            btnViewServices.Enabled = false;
-            btnViewServices.Location = new Point(12, 570);
-            btnViewServices.Name = "btnViewServices";
-            btnViewServices.Size = new Size(175, 29);
-            btnViewServices.TabIndex = 1;
-            btnViewServices.Text = "View Service Log";
-            btnViewServices.UseVisualStyleBackColor = true;
-            btnViewServices.Click += btnViewServices_Click;
             // 
             // dataGridView2
             // 
@@ -69,35 +56,23 @@
             dataGridView2.Location = new Point(967, 0);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(389, 564);
-            dataGridView2.TabIndex = 3;
+            dataGridView2.Size = new Size(390, 678);
+            dataGridView2.TabIndex = 5;
             dataGridView2.RowValidated += dataGridView2_RowValidated;
             // 
-            // button1
-            // 
-            button1.Location = new Point(193, 570);
-            button1.Name = "button1";
-            button1.Size = new Size(175, 29);
-            button1.TabIndex = 4;
-            button1.Text = "AC Cleaning";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // formApartmentsDisplay2
+            // formPPMsDisplay2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1356, 678);
-            Controls.Add(button1);
             Controls.Add(dataGridView2);
-            Controls.Add(btnViewServices);
             Controls.Add(dataGridView1);
-            Name = "formApartmentsDisplay2";
-            Text = "formApartmentsDisplay2";
-            Load += formApartmentsDisplay2_Load;
+            Name = "formPPMsDisplay2";
+            Text = "formPPMsDisplay2";
+            Load += formPPMsDisplay2_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource2).EndInit();
             ResumeLayout(false);
         }
@@ -105,10 +80,8 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private BindingSource bindingSource1;
-        private Button btnViewServices;
         private DataGridView dataGridView2;
+        private BindingSource bindingSource1;
         private BindingSource bindingSource2;
-        private Button button1;
     }
 }
