@@ -26,6 +26,19 @@ namespace RE_manager
         private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
             DateTime selectedDate = e.Start.Date;
+            using (var ctx = new PeopleContextFactory().CreateDbContext(null))
+            {
+                if (selectedDate == DateTime.Today)
+                {
+                    var alerts = ctx.GetTodaysAlerts(selectedDate);
+                    bindingSource1.DataSource = alerts;
+                } else
+                {
+                    var alerts = ctx.GetAlerts(selectedDate);
+                    bindingSource1.DataSource = alerts;
+                }
+
+            }
 
             dataGridView1.Refresh();
         }
@@ -37,33 +50,62 @@ namespace RE_manager
 
         private void formDashboardDisplay_Load(object sender, EventArgs e)
         {
+            monthCalendar1.RemoveAllBoldedDates();
+            foreach (var dt in GetEventTimes())
+            {
+                monthCalendar1.AddBoldedDate(dt);
+            }
+            monthCalendar1.UpdateBoldedDates();
+
+
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = bindingSource1;
 
             LoadData();
+
+            dataGridView1.Columns[nameof(Alert.EventDate)].HeaderText = "Date";
+            dataGridView1.Columns[nameof(Alert.Description)].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
         }
 
         private void LoadData()
         {
             using (var ctx = new PeopleContextFactory().CreateDbContext(null))
             {
-                var people = ctx.People
-                    .Include(a => a.EmailAddresses)
-                    .Include(e => e.Addresses)
-                    .ToList();
+                var alerts = ctx.GetTodaysAlerts(DateTime.Today);
 
-                bindingSource1.DataSource = people;
+                bindingSource1.DataSource = alerts;  
             }
         }
 
         private void dataGridView1_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
-            if (bindingSource1.Current is Person edited)
-                using (var ctx = new PeopleContextFactory().CreateDbContext(null))
-                {
-                    ctx.People.Update(edited);
-                    ctx.SaveChanges();
-                }
+            
+        }
+
+        private HashSet<DateTime> GetEventTimes()
+        {
+            using (var ctx = new PeopleContextFactory().CreateDbContext(null))
+            {
+                var today = DateTime.Today;
+
+                var eventDates = new HashSet<DateTime>();
+
+                // Add contract end dates
+                eventDates.UnionWith(
+                    ctx.Apartments2
+                       .Where(a => a.ContractEndDate >= today)
+                       .Select(a => a.ContractEndDate)
+                );
+
+                eventDates.UnionWith(
+                ctx.ApartmentCheques2
+                   .Where(c => !c.IsCashed)
+                   .Select(c => c.DueDate.Date)
+                );
+
+                return eventDates;
+            }
         }
     }
 }

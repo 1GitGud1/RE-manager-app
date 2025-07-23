@@ -35,6 +35,152 @@ namespace EFDataAccessLibrary.DataAccess
                 .IsRequired();
         }
 
+        public List<Alert> GetAlerts(DateTime targetDate)
+        {
+            var today = DateTime.Today;
+
+            var tenancyAlerts = Apartments2
+                .Where(a => a.ContractEndDate == targetDate)
+                .Select(a => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = a.ApartmentNumber.ToString(),
+                    EventDate = a.ContractEndDate,
+                    Description = "Tenancy Deadline"
+                });
+
+            var chequeAlerts = ApartmentCheques2
+                .Where(c => c.DueDate == targetDate && !c.IsCashed)
+                .Select(c => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = c.ApartmentNumber.ToString(),
+                    EventDate = c.DueDate,
+                    Description = "Cheque Payment Due"
+                });
+
+            var Q1PPMAlerts = ApartmentPPMs2
+                .Where(p => p.Q1Date == targetDate && !p.Q1Done)
+                .Select(p => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = p.ApartmentNumber.ToString(),
+                    EventDate = p.Q1Date,
+                    Description = "AC cleaning Q1"
+                });
+
+            var Q2PPMAlerts = ApartmentPPMs2
+                .Where(p => p.Q2Date == targetDate && !p.Q2Done)
+                .Select(p => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = p.ApartmentNumber.ToString(),
+                    EventDate = p.Q2Date,
+                    Description = "AC cleaning Q2"
+                });
+
+            var Q3PPMAlerts = ApartmentPPMs2
+                .Where(p => p.Q3Date == targetDate && !p.Q3Done)
+                .Select(p => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = p.ApartmentNumber.ToString(),
+                    EventDate = p.Q3Date,
+                    Description = "AC cleaning Q3"
+                });
+
+            var Q4PPMAlerts = ApartmentPPMs2
+                .Where(p => p.Q4Date == targetDate && !p.Q4Done)
+                .Select(p => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = p.ApartmentNumber.ToString(),
+                    EventDate = p.Q4Date,
+                    Description = "AC cleaning Q4"
+                });
+
+            return tenancyAlerts
+                .Union(chequeAlerts)
+                .Union(Q1PPMAlerts)
+                .Union(Q2PPMAlerts)
+                .Union(Q3PPMAlerts)
+                .Union(Q4PPMAlerts)
+                .ToList();
+        }
+
+        public List<Alert> GetTodaysAlerts(DateTime targetDate)
+        {
+            var today = DateTime.Today;
+
+            var tenancyAlerts = Apartments2
+                .Where(a => a.ContractEndDate == targetDate)
+                .Select(a => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = a.ApartmentNumber.ToString(),
+                    EventDate = a.ContractEndDate,
+                    Description = "Tenancy Deadline"
+                });
+
+            var chequeAlerts = ApartmentCheques2
+                .Where(c => c.DueDate <= targetDate && c.DueDate != DateTime.MinValue && !c.IsCashed)
+                .Select(c => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = c.ApartmentNumber.ToString(),
+                    EventDate = c.DueDate,
+                    Description = "Cheque Payment Due"
+                });
+
+            var Q1PPMAlerts = ApartmentPPMs2
+                .Where(p => p.Q1Date <= targetDate && p.Q1Date != DateTime.MinValue && !p.Q1Done)
+                .Select(p => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = p.ApartmentNumber.ToString(),
+                    EventDate = p.Q1Date,
+                    Description = "AC cleaning Q1"
+                });
+
+            var Q2PPMAlerts = ApartmentPPMs2
+                .Where(p => p.Q2Date <= targetDate && p.Q2Date != DateTime.MinValue && !p.Q2Done)
+                .Select(p => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = p.ApartmentNumber.ToString(),
+                    EventDate = p.Q2Date,
+                    Description = "AC cleaning Q2"
+                });
+
+            var Q3PPMAlerts = ApartmentPPMs2
+                .Where(p => p.Q3Date <= targetDate && p.Q3Date != DateTime.MinValue && !p.Q3Done)
+                .Select(p => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = p.ApartmentNumber.ToString(),
+                    EventDate = p.Q3Date,
+                    Description = "AC cleaning Q3"
+                });
+
+            var Q4PPMAlerts = ApartmentPPMs2
+                .Where(p => p.Q4Date <= targetDate && p.Q4Date != DateTime.MinValue && !p.Q4Done)
+                .Select(p => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = p.ApartmentNumber.ToString(),
+                    EventDate = p.Q4Date,
+                    Description = "AC cleaning Q4"
+                });
+
+            return tenancyAlerts
+                .Union(chequeAlerts)
+                .Union(Q1PPMAlerts)
+                .Union(Q2PPMAlerts)
+                .Union(Q3PPMAlerts)
+                .Union(Q4PPMAlerts)
+                .ToList();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
