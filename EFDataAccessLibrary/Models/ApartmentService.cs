@@ -20,8 +20,16 @@ namespace EFDataAccessLibrary.Models
         [Column(TypeName = "date")]
         public DateTime ServiceDate { get; set; }
 
+        public TimeSpan Time { get; set; }
+
+        public bool Done { get; set; }
+
         [Required]
         public int ApartmentNumber { get; set; }
+
+        [Required]
+        public int BuildingNumber { get; set; }
+
         Apartment Apartment { get; set; }
     }
 }

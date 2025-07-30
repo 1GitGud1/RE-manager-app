@@ -24,6 +24,10 @@ namespace EFDataAccessLibrary.Models
 
         [Required]
         public int ApartmentNumber { get; set; }
+
+        [Required]
+        public int BuildingNumber { get; set; }
+
         Apartment Apartment { get; set; }
     }
 }

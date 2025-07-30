@@ -31,7 +31,7 @@ namespace EFDataAccessLibrary.DataAccess
             modelBuilder.Entity<Apartment>()
                 .HasOne(e => e.PPM)
                 .WithOne(e => e.Apartment)
-                .HasForeignKey<ApartmentPPM>(e => e.ApartmentNumber)
+                .HasForeignKey<ApartmentPPM>(e => new { e.BuildingNumber, e.ApartmentNumber })
                 .IsRequired();
         }
 
@@ -57,6 +57,16 @@ namespace EFDataAccessLibrary.DataAccess
                     About = c.ApartmentNumber.ToString(),
                     EventDate = c.DueDate,
                     Description = "Cheque Payment Due"
+                });
+
+            var serviceAlerts = ApartmentServices2
+                .Where(c => c.ServiceDate == targetDate && !c.Done)
+                .Select(c => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = c.ApartmentNumber.ToString(),
+                    EventDate = c.ServiceDate,
+                    Description = c.Description
                 });
 
             var Q1PPMAlerts = ApartmentPPMs2
@@ -99,12 +109,44 @@ namespace EFDataAccessLibrary.DataAccess
                     Description = "AC cleaning Q4"
                 });
 
+            var contractDueAlerts = ContractDues2
+                .Where(d => d.DueDate.Date == targetDate.Date && !d.IsPaid)
+                .Join(
+                    Contracts2,
+                    due => due.ContractId,
+                    contract => contract.ContractId,
+                    (due, contract) => new Alert
+                    {
+                        BuildingNumber = 2,
+                        About = contract.Company,
+                        EventDate = due.DueDate,
+                        Description = "Contract Payment Due"
+                    });
+
+            var PPMAlerts = PPMtimes2
+                .Where(d => d.StartDate.Date == targetDate.Date && !d.IsDone)
+                .Join(
+                    PPMs2,
+                    time => time.PPMId,
+                    ppm => ppm.PPMId,
+                    (time, ppm) => new Alert
+                    {
+                        BuildingNumber = 2,
+                        About = ppm.Title,
+                        EventDate = time.StartDate,
+                        Description = "PPM Due"
+                    });
+
             return tenancyAlerts
                 .Union(chequeAlerts)
+                .Union(serviceAlerts)
                 .Union(Q1PPMAlerts)
                 .Union(Q2PPMAlerts)
                 .Union(Q3PPMAlerts)
                 .Union(Q4PPMAlerts)
+                .Union(contractDueAlerts)
+                .Union(PPMAlerts)
+                .OrderByDescending(a => a.EventDate)
                 .ToList();
         }
 
@@ -130,6 +172,16 @@ namespace EFDataAccessLibrary.DataAccess
                     About = c.ApartmentNumber.ToString(),
                     EventDate = c.DueDate,
                     Description = "Cheque Payment Due"
+                });
+
+            var serviceAlerts = ApartmentServices2
+                .Where(c => c.ServiceDate <= targetDate && c.ServiceDate != DateTime.MinValue && !c.Done)
+                .Select(c => new Alert
+                {
+                    BuildingNumber = 2,
+                    About = c.ApartmentNumber.ToString(),
+                    EventDate = c.ServiceDate,
+                    Description = c.Description
                 });
 
             var Q1PPMAlerts = ApartmentPPMs2
@@ -172,12 +224,44 @@ namespace EFDataAccessLibrary.DataAccess
                     Description = "AC cleaning Q4"
                 });
 
+            var contractDueAlerts = ContractDues2
+                .Where(d => d.DueDate.Date <= targetDate.Date && d.DueDate != DateTime.MinValue && !d.IsPaid)
+                .Join(
+                    Contracts2,
+                    due => due.ContractId,
+                    contract => contract.ContractId,
+                    (due, contract) => new Alert
+                    {
+                        BuildingNumber = 2,
+                        About = contract.Company,
+                        EventDate = due.DueDate,
+                        Description = "Contract Payment Due"
+                    });
+
+            var PPMAlerts = PPMtimes2
+                .Where(d => d.StartDate.Date <= targetDate.Date && d.StartDate != DateTime.MinValue && !d.IsDone)
+                .Join(
+                    PPMs2,
+                    time => time.PPMId,
+                    ppm => ppm.PPMId,
+                    (time, ppm) => new Alert
+                    {
+                        BuildingNumber = 2,
+                        About = ppm.Title,
+                        EventDate = time.StartDate,
+                        Description = "PPM Due"
+                    });
+
             return tenancyAlerts
                 .Union(chequeAlerts)
+                .Union(serviceAlerts)
                 .Union(Q1PPMAlerts)
                 .Union(Q2PPMAlerts)
                 .Union(Q3PPMAlerts)
                 .Union(Q4PPMAlerts)
+                .Union(contractDueAlerts)
+                .Union(PPMAlerts)
+                .OrderByDescending(a => a.EventDate)
                 .ToList();
         }
 

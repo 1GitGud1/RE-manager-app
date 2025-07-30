@@ -12,6 +12,7 @@ namespace RE_manager
 {
     public partial class formDashboard : Form
     {
+        formBuilding building;
         formBuilding2 building2;
         public formDashboard()
         {
@@ -78,6 +79,27 @@ namespace RE_manager
         private void Building2_FormClosed(object? sender, FormClosedEventArgs e)
         {
             building2 = null;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (building == null)
+            {
+                building = new formBuilding();
+                building.FormClosed += Building_FormClosed;
+                building.MdiParent = this.MdiParent;
+                building.Dock = DockStyle.Fill;
+                building.Show();
+            }
+            else
+            {
+                building.Activate();
+            }
+        }
+
+        private void Building_FormClosed(object? sender, FormClosedEventArgs e)
+        {
+            building = null;
         }
     }
 }

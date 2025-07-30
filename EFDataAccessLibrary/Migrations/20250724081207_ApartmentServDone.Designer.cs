@@ -4,6 +4,7 @@ using EFDataAccessLibrary.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFDataAccessLibrary.Migrations
 {
     [DbContext(typeof(PeopleContext))]
-    partial class PeopleContextModelSnapshot : ModelSnapshot
+    [Migration("20250724081207_ApartmentServDone")]
+    partial class ApartmentServDone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,9 +65,6 @@ namespace EFDataAccessLibrary.Migrations
 
             modelBuilder.Entity("EFDataAccessLibrary.Models.Apartment", b =>
                 {
-                    b.Property<int>("BuildingNumber")
-                        .HasColumnType("int");
-
                     b.Property<int>("ApartmentNumber")
                         .HasColumnType("int");
 
@@ -90,7 +90,7 @@ namespace EFDataAccessLibrary.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("BuildingNumber", "ApartmentNumber");
+                    b.HasKey("ApartmentNumber");
 
                     b.ToTable("Apartments2");
                 });
@@ -107,16 +107,10 @@ namespace EFDataAccessLibrary.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("int");
 
-                    b.Property<int?>("ApartmentBuildingNumber")
-                        .HasColumnType("int");
-
                     b.Property<int>("ApartmentNumber")
                         .HasColumnType("int");
 
                     b.Property<int?>("ApartmentNumber1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BuildingNumber")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DueDate")
@@ -127,16 +121,13 @@ namespace EFDataAccessLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApartmentBuildingNumber", "ApartmentNumber1");
+                    b.HasIndex("ApartmentNumber1");
 
                     b.ToTable("ApartmentCheques2");
                 });
 
             modelBuilder.Entity("EFDataAccessLibrary.Models.ApartmentPPM", b =>
                 {
-                    b.Property<int>("BuildingNumber")
-                        .HasColumnType("int");
-
                     b.Property<int>("ApartmentNumber")
                         .HasColumnType("int");
 
@@ -176,7 +167,7 @@ namespace EFDataAccessLibrary.Migrations
                     b.Property<TimeSpan>("Q4Time")
                         .HasColumnType("time");
 
-                    b.HasKey("BuildingNumber", "ApartmentNumber");
+                    b.HasKey("ApartmentNumber");
 
                     b.ToTable("ApartmentPPMs2");
                 });
@@ -189,16 +180,10 @@ namespace EFDataAccessLibrary.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ApartmentBuildingNumber")
-                        .HasColumnType("int");
-
                     b.Property<int>("ApartmentNumber")
                         .HasColumnType("int");
 
                     b.Property<int?>("ApartmentNumber1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BuildingNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -217,7 +202,7 @@ namespace EFDataAccessLibrary.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApartmentBuildingNumber", "ApartmentNumber1");
+                    b.HasIndex("ApartmentNumber1");
 
                     b.ToTable("ApartmentServices2");
                 });
@@ -393,14 +378,14 @@ namespace EFDataAccessLibrary.Migrations
                 {
                     b.HasOne("EFDataAccessLibrary.Models.Apartment", null)
                         .WithMany("ApartmentCheques")
-                        .HasForeignKey("ApartmentBuildingNumber", "ApartmentNumber1");
+                        .HasForeignKey("ApartmentNumber1");
                 });
 
             modelBuilder.Entity("EFDataAccessLibrary.Models.ApartmentPPM", b =>
                 {
                     b.HasOne("EFDataAccessLibrary.Models.Apartment", "Apartment")
                         .WithOne("PPM")
-                        .HasForeignKey("EFDataAccessLibrary.Models.ApartmentPPM", "BuildingNumber", "ApartmentNumber")
+                        .HasForeignKey("EFDataAccessLibrary.Models.ApartmentPPM", "ApartmentNumber")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -411,7 +396,7 @@ namespace EFDataAccessLibrary.Migrations
                 {
                     b.HasOne("EFDataAccessLibrary.Models.Apartment", null)
                         .WithMany("ApartmentServices")
-                        .HasForeignKey("ApartmentBuildingNumber", "ApartmentNumber1");
+                        .HasForeignKey("ApartmentNumber1");
                 });
 
             modelBuilder.Entity("EFDataAccessLibrary.Models.ContractDue", b =>

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RE_manager
+namespace RE_manager.Building1
 {
-    public partial class formApartmentsDisplay : Form
+    public partial class formApartmentPPMsDisplay : Form
     {
-        public formApartmentsDisplay()
+        public formApartmentPPMsDisplay()
         {
             InitializeComponent();
         }

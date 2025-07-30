@@ -120,6 +120,7 @@
             button1.Text = "                Tenants";
             button1.TextAlign = ContentAlignment.MiddleLeft;
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // pnBuilding1
             // 
@@ -145,6 +146,7 @@
             button2.Text = "                PPMs";
             button2.TextAlign = ContentAlignment.MiddleLeft;
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // pnBuilding3
             // 
@@ -170,6 +172,7 @@
             button3.Text = "                Contracts";
             button3.TextAlign = ContentAlignment.MiddleLeft;
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // panel3
             // 
@@ -195,6 +198,7 @@
             button4.Text = "                Dashboard";
             button4.TextAlign = ContentAlignment.MiddleLeft;
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // parentPanel
             // 
@@ -215,6 +219,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "formBuilding";
             Text = "formBuilding";
+            Load += formBuilding_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btnHam).EndInit();

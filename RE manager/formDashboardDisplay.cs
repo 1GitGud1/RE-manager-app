@@ -99,9 +99,45 @@ namespace RE_manager
                 );
 
                 eventDates.UnionWith(
-                ctx.ApartmentCheques2
-                   .Where(c => !c.IsCashed)
-                   .Select(c => c.DueDate.Date)
+                    ctx.ApartmentCheques2
+                       .Where(c => !c.IsCashed)
+                       .Select(c => c.DueDate.Date)
+                );
+
+                eventDates.UnionWith(
+                    ctx.ApartmentServices2
+                       .Where(c => !c.Done)
+                       .Select(c => c.ServiceDate.Date)
+                );
+
+                eventDates.UnionWith(
+                    ctx.ApartmentPPMs2
+                        .Where(p => !p.Q1Done)
+                        .Select(p => p.Q1Date.Date)
+                );
+
+                eventDates.UnionWith(
+                    ctx.ApartmentPPMs2
+                        .Where(p => !p.Q2Done)
+                        .Select(p => p.Q2Date.Date)
+                );
+
+                eventDates.UnionWith(
+                    ctx.ApartmentPPMs2
+                        .Where(p => !p.Q3Done)
+                        .Select(p => p.Q3Date.Date)
+                );
+
+                eventDates.UnionWith(
+                    ctx.ApartmentPPMs2
+                        .Where(p => !p.Q4Done)
+                        .Select(p => p.Q4Date.Date)
+                );
+
+                eventDates.UnionWith(
+                    ctx.ContractDues2
+                        .Where(d => !d.IsPaid)
+                        .Select(d => d.DueDate.Date)
                 );
 
                 return eventDates;

@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace RE_manager
+namespace RE_manager.Building1
 {
-    public partial class formBuilding : Form
+    public partial class formContractsDisplay : Form
     {
-        public formBuilding()
+        public formContractsDisplay()
         {
             InitializeComponent();
         }

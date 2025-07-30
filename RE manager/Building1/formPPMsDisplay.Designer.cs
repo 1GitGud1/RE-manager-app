@@ -1,6 +1,6 @@
-﻿namespace RE_manager
+﻿namespace RE_manager.Building1
 {
-    partial class formApartmentsDisplay
+    partial class formPPMsDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -30,10 +30,13 @@
         {
             components = new System.ComponentModel.Container();
             dataGridView1 = new DataGridView();
-            button1 = new Button();
+            dataGridView2 = new DataGridView();
             bindingSource1 = new BindingSource(components);
+            bindingSource2 = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
@@ -42,36 +45,39 @@
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1108, 564);
-            dataGridView1.TabIndex = 0;
+            dataGridView1.Size = new Size(961, 678);
+            dataGridView1.TabIndex = 3;
             // 
-            // button1
+            // dataGridView2
             // 
-            button1.Location = new Point(12, 570);
-            button1.Name = "button1";
-            button1.Size = new Size(175, 29);
-            button1.TabIndex = 1;
-            button1.Text = "View Service Log";
-            button1.UseVisualStyleBackColor = true;
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(967, 0);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 51;
+            dataGridView2.Size = new Size(390, 678);
+            dataGridView2.TabIndex = 6;
             // 
-            // formApartmentsDisplay
+            // formPPMsDisplay
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1108, 625);
-            Controls.Add(button1);
+            ClientSize = new Size(1356, 678);
+            Controls.Add(dataGridView2);
             Controls.Add(dataGridView1);
-            Name = "formApartmentsDisplay";
-            Text = "    ";
+            Name = "formPPMsDisplay";
+            Text = "formPPMsDisplay";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSource2).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private DataGridView dataGridView1;
-        private Button button1;
+        private DataGridView dataGridView2;
         private BindingSource bindingSource1;
+        private BindingSource bindingSource2;
     }
 }

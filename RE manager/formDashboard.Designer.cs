@@ -119,6 +119,7 @@
             button1.Text = "                Building 1";
             button1.TextAlign = ContentAlignment.MiddleLeft;
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // pnBuilding1
             // 

@@ -5,12 +5,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFDataAccessLibrary.Models
 {
+    [PrimaryKey(nameof(BuildingNumber), nameof(ApartmentNumber))]
     public class ApartmentPPM
     {
-        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int BuildingNumber { get; set; }
+
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ApartmentNumber { get; set; }
 
