@@ -14,9 +14,11 @@ namespace RE_manager.Building2
 {
     public partial class formApartmentPPMsDisplay2 : Form
     {
-        public formApartmentPPMsDisplay2()
+        private readonly int _buildingNumber;
+        public formApartmentPPMsDisplay2(int buildingNumber)
         {
             InitializeComponent();
+            _buildingNumber = buildingNumber;
         }
 
         private void formApartmentPPMsDisplay2_Load(object sender, EventArgs e)
@@ -35,7 +37,9 @@ namespace RE_manager.Building2
         {
             using (var ctx = new PeopleContextFactory().CreateDbContext(null))
             {
-                var apartmentPPMs = ctx.ApartmentPPMs2.ToList();
+                var apartmentPPMs = ctx.ApartmentPPMs2
+                    .Where(a => a.BuildingNumber == _buildingNumber)
+                    .ToList();
 
                 bindingSource1.DataSource = apartmentPPMs;
             }
@@ -46,12 +50,14 @@ namespace RE_manager.Building2
             using var ctx = new PeopleContextFactory().CreateDbContext(null);
 
             var apartments = ctx.Apartments2
+                                .Where(a => a.BuildingNumber == _buildingNumber)
                                 .Select(a => a.ApartmentNumber)
                                 .ToList();
 
             var existingPPMs = ctx.Set<ApartmentPPM>()
-                                  .Select(p => p.ApartmentNumber)
-                                  .ToList();
+                                .Where(a => a.BuildingNumber == _buildingNumber)
+                                .Select(p => p.ApartmentNumber)
+                                .ToList();
 
             var missing = apartments.Except(existingPPMs).ToList();
 
@@ -60,6 +66,7 @@ namespace RE_manager.Building2
                 var newPPMs = missing.Select(apNum => new ApartmentPPM
                 {
                     ApartmentNumber = apNum,
+                    BuildingNumber = _buildingNumber,
                     // initialize other fields with defaults if necessary
                 }).ToList();
 

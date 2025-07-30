@@ -14,6 +14,10 @@ namespace EFDataAccessLibrary.Models
 
         [Required]
         [MaxLength(50)]
+        public int BuildingNumber { get; set; }
+
+        [Required]
+        [MaxLength(50)]
         public string Company { get; set; }
 
         [Required]

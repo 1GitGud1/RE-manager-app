@@ -13,6 +13,10 @@ namespace EFDataAccessLibrary.Models
         public int PPMId { get; set; }
 
         [Required]
+        [MaxLength(50)]
+        public int BuildingNumber { get; set; }
+
+        [Required]
         [MaxLength(100)]
         public string Title { get; set; }
 

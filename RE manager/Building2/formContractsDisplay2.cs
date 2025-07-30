@@ -14,10 +14,12 @@ namespace RE_manager.Building2
 {
     public partial class formContractsDisplay2 : Form
     {
+        int _buildingNumber;
         int _contractNumber;
-        public formContractsDisplay2()
+        public formContractsDisplay2(int buildingNumber)
         {
             InitializeComponent();
+            _buildingNumber = buildingNumber;
         }
 
         private void formContractsDisplay2_Load(object sender, EventArgs e)
@@ -32,15 +34,20 @@ namespace RE_manager.Building2
 
             dataGridView1.Columns["ContractId"].Visible = false;
 
-            dataGridView2.Columns["ContractId"].Visible = false;
-            dataGridView2.Columns["Id"].Visible = false;
+            if (dataGridView1.CurrentRow?.DataBoundItem is Contract contract)
+            {
+                dataGridView2.Columns["ContractId"].Visible = false;
+                dataGridView2.Columns["Id"].Visible = false;
+            }
         }
 
         private void LoadData()
         {
             using (var ctx = new PeopleContextFactory().CreateDbContext(null))
             {
-                var contracts = ctx.Contracts2.ToList();
+                var contracts = ctx.Contracts2
+                    .Where(c => c.BuildingNumber == _buildingNumber)
+                    .ToList();
 
                 bindingSource1.DataSource = contracts;
             }
@@ -65,6 +72,7 @@ namespace RE_manager.Building2
             {
                 using (var ctx = new PeopleContextFactory().CreateDbContext(null))
                 {
+                    edited.BuildingNumber = _buildingNumber;
                     ctx.Contracts2.Update(edited);
                     ctx.SaveChanges();
                 }

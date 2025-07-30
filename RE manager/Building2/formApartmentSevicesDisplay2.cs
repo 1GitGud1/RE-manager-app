@@ -15,10 +15,12 @@ namespace RE_manager
     public partial class formApartmentSevicesDisplay2 : Form
     {
         private readonly int _apartmentNumber;
-        public formApartmentSevicesDisplay2(int apartmentNumber)
+        private readonly int _buildingNumber;
+        public formApartmentSevicesDisplay2(int apartmentNumber, int buildingNumber)
         {
             InitializeComponent();
             _apartmentNumber = apartmentNumber;
+            _buildingNumber = buildingNumber;
         }
 
         private void formApartmentSevicesDisplay2_Load(object sender, EventArgs e)
@@ -34,7 +36,7 @@ namespace RE_manager
             using (var ctx = new PeopleContextFactory().CreateDbContext(null))
             {
                 var services = ctx.ApartmentServices2
-                    .Where(s => s.ApartmentNumber == _apartmentNumber)
+                    .Where(s => s.ApartmentNumber == _apartmentNumber && s.BuildingNumber == _buildingNumber)
                     .OrderBy(s => s.ServiceDate)
                     .ToList();
 
@@ -49,6 +51,7 @@ namespace RE_manager
                 using (var ctx = new PeopleContextFactory().CreateDbContext(null))
                 {
                     edited.ApartmentNumber = _apartmentNumber;
+                    edited.BuildingNumber = _buildingNumber;
                     ctx.ApartmentServices2.Update(edited);
                     ctx.SaveChanges();
                 }

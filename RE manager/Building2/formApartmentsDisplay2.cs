@@ -17,6 +17,7 @@ namespace RE_manager
     public partial class formApartmentsDisplay2 : Form
     {
         private int _apartmentNumber;
+        private int _buildingNumber;
         public formApartmentsDisplay2()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace RE_manager
         public formApartmentsDisplay2(Form callingForm)
         {
             building2 = callingForm as formBuilding2;
+            _buildingNumber = building2._buildingNumber;
             InitializeComponent();
         }
 
@@ -49,7 +51,9 @@ namespace RE_manager
         {
             using (var ctx = new PeopleContextFactory().CreateDbContext(null))
             {
-                var apartments = ctx.Apartments2.ToList();
+                var apartments = ctx.Apartments2
+                    .Where(b => b.BuildingNumber == _buildingNumber)
+                    .ToList();
 
                 bindingSource1.DataSource = apartments;
             }
@@ -60,7 +64,7 @@ namespace RE_manager
             using (var ctx = new PeopleContextFactory().CreateDbContext(null))
             {
                 var cheques = ctx.ApartmentCheques2
-                    .Where(s => s.ApartmentNumber == _apartmentNumber)
+                    .Where(s => s.ApartmentNumber == _apartmentNumber && s.BuildingNumber == _buildingNumber)
                     .OrderBy(s => s.DueDate)
                     .ToList();
 
@@ -74,8 +78,8 @@ namespace RE_manager
                 using (var ctx = new PeopleContextFactory().CreateDbContext(null))
                 {
                     bool exists = ctx.Apartments2
-                 .AsNoTracking()
-                 .Any(a => a.ApartmentNumber == edited.ApartmentNumber);
+                        .AsNoTracking()
+                        .Any(a => a.ApartmentNumber == edited.ApartmentNumber && a.BuildingNumber == edited.BuildingNumber);
 
                     if (!exists)
                     {
@@ -110,7 +114,7 @@ namespace RE_manager
             if (dataGridView1.CurrentRow?.DataBoundItem is Apartment apt)
             {
                 this.Hide();
-                formApartmentSevicesDisplay2 apartmentServicesDisplay = new formApartmentSevicesDisplay2(apt.ApartmentNumber) { TopLevel = false, TopMost = true };
+                formApartmentSevicesDisplay2 apartmentServicesDisplay = new formApartmentSevicesDisplay2(apt.ApartmentNumber, apt.BuildingNumber) { TopLevel = false, TopMost = true };
                 apartmentServicesDisplay.FormBorderStyle = FormBorderStyle.None;
                 building2.LoadFormInPanel(apartmentServicesDisplay);
             }
@@ -122,7 +126,8 @@ namespace RE_manager
             {
                 using (var ctx = new PeopleContextFactory().CreateDbContext(null))
                 {
-                    edited.ApartmentNumber = _apartmentNumber;
+                    edited.ApartmentNumber = _apartmentNumber; 
+                    edited.BuildingNumber = _buildingNumber;
                     ctx.ApartmentCheques2.Update(edited);
                     ctx.SaveChanges();
                 }
@@ -132,7 +137,7 @@ namespace RE_manager
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            formApartmentPPMsDisplay2 apartmentPPMsDisplay = new formApartmentPPMsDisplay2() { TopLevel = false, TopMost = true };
+            formApartmentPPMsDisplay2 apartmentPPMsDisplay = new formApartmentPPMsDisplay2(_buildingNumber) { TopLevel = false, TopMost = true };
             apartmentPPMsDisplay.FormBorderStyle = FormBorderStyle.None;
             building2.LoadFormInPanel(apartmentPPMsDisplay);
         }

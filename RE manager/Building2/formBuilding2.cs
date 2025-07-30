@@ -15,10 +15,12 @@ namespace RE_manager
     {
         formDashboard dashboard;
         Form currentDisplay;
+        public int _buildingNumber;
 
-        public formBuilding2()
+        public formBuilding2(int buildingNumber)
         {
             InitializeComponent();
+            _buildingNumber = buildingNumber;
         }
 
         private void formBuilding2_Load(object sender, EventArgs e)
@@ -42,7 +44,7 @@ namespace RE_manager
         private void button2_Click(object sender, EventArgs e)
         {
             currentDisplay.Hide();
-            formPPMsDisplay2 ppmsDisplay = new formPPMsDisplay2() { TopLevel = false, TopMost = true };
+            formPPMsDisplay2 ppmsDisplay = new formPPMsDisplay2(_buildingNumber) { TopLevel = false, TopMost = true };
             ppmsDisplay.FormBorderStyle = FormBorderStyle.None;
             parentPanel.Controls.Add(ppmsDisplay);
             ppmsDisplay.Show();
@@ -52,7 +54,7 @@ namespace RE_manager
         private void button3_Click(object sender, EventArgs e)
         {
             currentDisplay.Hide();
-            formContractsDisplay2 contractsDisplay = new formContractsDisplay2() { TopLevel = false, TopMost = true };
+            formContractsDisplay2 contractsDisplay = new formContractsDisplay2(_buildingNumber) { TopLevel = false, TopMost = true };
             contractsDisplay.FormBorderStyle = FormBorderStyle.None;
             parentPanel.Controls.Add(contractsDisplay);
             contractsDisplay.Show();

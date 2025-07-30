@@ -14,10 +14,12 @@ namespace RE_manager.Building2
 {
     public partial class formPPMsDisplay2 : Form
     {
+        int _buildingNumber;
         int _ppmNumber;
-        public formPPMsDisplay2()
+        public formPPMsDisplay2(int buildingNumber)
         {
             InitializeComponent();
+            _buildingNumber = buildingNumber;
         }
 
         private void formPPMsDisplay2_Load(object sender, EventArgs e)
@@ -32,15 +34,20 @@ namespace RE_manager.Building2
 
             dataGridView1.Columns["PPMId"].Visible = false;
 
-            dataGridView2.Columns["PPMId"].Visible = false;
-            dataGridView2.Columns["Id"].Visible = false;
+            if (dataGridView1.CurrentRow?.DataBoundItem is PPM ppm)
+            {
+                dataGridView2.Columns["PPMId"].Visible = false;
+                dataGridView2.Columns["Id"].Visible = false;
+            }
         }
 
         private void LoadData()
         {
             using (var ctx = new PeopleContextFactory().CreateDbContext(null))
             {
-                var ppms = ctx.PPMs2.ToList();
+                var ppms = ctx.PPMs2
+                    .Where(p => p.BuildingNumber == _buildingNumber)
+                    .ToList();
 
                 bindingSource1.DataSource = ppms;
             }
@@ -65,6 +72,7 @@ namespace RE_manager.Building2
             {
                 using (var ctx = new PeopleContextFactory().CreateDbContext(null))
                 {
+                    edited.BuildingNumber = _buildingNumber;
                     ctx.PPMs2.Update(edited);
                     ctx.SaveChanges();
                 }

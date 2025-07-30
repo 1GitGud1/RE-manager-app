@@ -64,7 +64,7 @@ namespace RE_manager
         {
             if (building2 == null)
             {
-                building2 = new formBuilding2();
+                building2 = new formBuilding2(2);
                 building2.FormClosed += Building2_FormClosed;
                 building2.MdiParent = this.MdiParent;
                 building2.Dock = DockStyle.Fill;
