@@ -171,6 +171,7 @@
             button3.Text = "                Building 3";
             button3.TextAlign = ContentAlignment.MiddleLeft;
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
             // 
             // sidebarTransition
             // 

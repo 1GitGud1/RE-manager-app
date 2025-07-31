@@ -21,6 +21,7 @@ namespace RE_manager
         {
             InitializeComponent();
             _buildingNumber = buildingNumber;
+            lblHelloWorld.Text = ("Building " + buildingNumber);
         }
 
         private void formBuilding2_Load(object sender, EventArgs e)
