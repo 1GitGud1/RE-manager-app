@@ -43,7 +43,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(a => a.ContractEndDate == targetDate)
                 .Select(a => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = a.BuildingNumber,
                     About = a.ApartmentNumber.ToString(),
                     EventDate = a.ContractEndDate,
                     Description = "Tenancy Deadline"
@@ -53,7 +53,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(c => c.DueDate == targetDate && !c.IsCashed)
                 .Select(c => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = c.BuildingNumber,
                     About = c.ApartmentNumber.ToString(),
                     EventDate = c.DueDate,
                     Description = "Cheque Payment Due"
@@ -63,7 +63,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(c => c.ServiceDate == targetDate && !c.Done)
                 .Select(c => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = c.BuildingNumber,
                     About = c.ApartmentNumber.ToString(),
                     EventDate = c.ServiceDate,
                     Description = c.Description
@@ -73,7 +73,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(p => p.Q1Date == targetDate && !p.Q1Done)
                 .Select(p => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q1Date,
                     Description = "AC cleaning Q1"
@@ -83,7 +83,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(p => p.Q2Date == targetDate && !p.Q2Done)
                 .Select(p => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q2Date,
                     Description = "AC cleaning Q2"
@@ -93,7 +93,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(p => p.Q3Date == targetDate && !p.Q3Done)
                 .Select(p => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q3Date,
                     Description = "AC cleaning Q3"
@@ -103,7 +103,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(p => p.Q4Date == targetDate && !p.Q4Done)
                 .Select(p => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q4Date,
                     Description = "AC cleaning Q4"
@@ -117,7 +117,7 @@ namespace EFDataAccessLibrary.DataAccess
                     contract => contract.ContractId,
                     (due, contract) => new Alert
                     {
-                        BuildingNumber = 2,
+                        BuildingNumber = contract.BuildingNumber,
                         About = contract.Company,
                         EventDate = due.DueDate,
                         Description = "Contract Payment Due"
@@ -131,7 +131,7 @@ namespace EFDataAccessLibrary.DataAccess
                     ppm => ppm.PPMId,
                     (time, ppm) => new Alert
                     {
-                        BuildingNumber = 2,
+                        BuildingNumber = ppm.BuildingNumber,
                         About = ppm.Title,
                         EventDate = time.StartDate,
                         Description = "PPM Due"
@@ -158,7 +158,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(a => a.ContractEndDate == targetDate)
                 .Select(a => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = a.BuildingNumber,
                     About = a.ApartmentNumber.ToString(),
                     EventDate = a.ContractEndDate,
                     Description = "Tenancy Deadline"
@@ -168,7 +168,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(c => c.DueDate <= targetDate && c.DueDate != DateTime.MinValue && !c.IsCashed)
                 .Select(c => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = c.BuildingNumber,
                     About = c.ApartmentNumber.ToString(),
                     EventDate = c.DueDate,
                     Description = "Cheque Payment Due"
@@ -178,7 +178,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(c => c.ServiceDate <= targetDate && c.ServiceDate != DateTime.MinValue && !c.Done)
                 .Select(c => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = c.BuildingNumber,
                     About = c.ApartmentNumber.ToString(),
                     EventDate = c.ServiceDate,
                     Description = c.Description
@@ -188,7 +188,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(p => p.Q1Date <= targetDate && p.Q1Date != DateTime.MinValue && !p.Q1Done)
                 .Select(p => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q1Date,
                     Description = "AC cleaning Q1"
@@ -198,7 +198,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(p => p.Q2Date <= targetDate && p.Q2Date != DateTime.MinValue && !p.Q2Done)
                 .Select(p => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q2Date,
                     Description = "AC cleaning Q2"
@@ -208,7 +208,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(p => p.Q3Date <= targetDate && p.Q3Date != DateTime.MinValue && !p.Q3Done)
                 .Select(p => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q3Date,
                     Description = "AC cleaning Q3"
@@ -218,7 +218,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Where(p => p.Q4Date <= targetDate && p.Q4Date != DateTime.MinValue && !p.Q4Done)
                 .Select(p => new Alert
                 {
-                    BuildingNumber = 2,
+                    BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q4Date,
                     Description = "AC cleaning Q4"
@@ -232,7 +232,7 @@ namespace EFDataAccessLibrary.DataAccess
                     contract => contract.ContractId,
                     (due, contract) => new Alert
                     {
-                        BuildingNumber = 2,
+                        BuildingNumber = contract.BuildingNumber,
                         About = contract.Company,
                         EventDate = due.DueDate,
                         Description = "Contract Payment Due"
@@ -246,7 +246,7 @@ namespace EFDataAccessLibrary.DataAccess
                     ppm => ppm.PPMId,
                     (time, ppm) => new Alert
                     {
-                        BuildingNumber = 2,
+                        BuildingNumber = ppm.BuildingNumber,
                         About = ppm.Title,
                         EventDate = time.StartDate,
                         Description = "PPM Due"

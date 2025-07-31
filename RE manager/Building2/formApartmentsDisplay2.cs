@@ -43,8 +43,11 @@ namespace RE_manager
 
             dataGridView1.Columns["PPM"].Visible = false;
 
-            dataGridView2.Columns["ApartmentNumber"].Visible = false;
-            dataGridView2.Columns["Id"].Visible = false;
+            if (dataGridView1.CurrentRow?.DataBoundItem is Apartment apt)
+            {
+                dataGridView2.Columns["ApartmentNumber"].Visible = false;
+                dataGridView2.Columns["Id"].Visible = false;
+            }
         }
 
         private void LoadData()
