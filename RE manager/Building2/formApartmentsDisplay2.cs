@@ -29,6 +29,7 @@ namespace RE_manager
             building2 = callingForm as formBuilding2;
             _buildingNumber = building2._buildingNumber;
             InitializeComponent();
+            dataGridView1.MultiSelect = false;
         }
 
         private void formApartmentsDisplay2_Load(object sender, EventArgs e)
@@ -42,11 +43,13 @@ namespace RE_manager
             LoadData();
 
             dataGridView1.Columns["PPM"].Visible = false;
+            dataGridView1.Columns["BuildingNumber"].Visible = false;
 
-            if (dataGridView1.CurrentRow?.DataBoundItem is Apartment apt)
+            if (dataGridView1.Rows.Count > 1)
             {
                 dataGridView2.Columns["ApartmentNumber"].Visible = false;
                 dataGridView2.Columns["Id"].Visible = false;
+                dataGridView2.Columns["BuildingNumber"].Visible = false;
             }
         }
 
@@ -80,6 +83,7 @@ namespace RE_manager
             if (bindingSource1.Current is Apartment edited)
                 using (var ctx = new PeopleContextFactory().CreateDbContext(null))
                 {
+                    edited.BuildingNumber = _buildingNumber;
                     bool exists = ctx.Apartments2
                         .AsNoTracking()
                         .Any(a => a.ApartmentNumber == edited.ApartmentNumber && a.BuildingNumber == edited.BuildingNumber);
@@ -129,7 +133,7 @@ namespace RE_manager
             {
                 using (var ctx = new PeopleContextFactory().CreateDbContext(null))
                 {
-                    edited.ApartmentNumber = _apartmentNumber; 
+                    edited.ApartmentNumber = _apartmentNumber;
                     edited.BuildingNumber = _buildingNumber;
                     ctx.ApartmentCheques2.Update(edited);
                     ctx.SaveChanges();
@@ -143,6 +147,24 @@ namespace RE_manager
             formApartmentPPMsDisplay2 apartmentPPMsDisplay = new formApartmentPPMsDisplay2(_buildingNumber) { TopLevel = false, TopMost = true };
             apartmentPPMsDisplay.FormBorderStyle = FormBorderStyle.None;
             building2.LoadFormInPanel(apartmentPPMsDisplay);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow?.DataBoundItem is Apartment apt)
+            {
+                var result = MessageBox.Show($"Delete apartment {apt.ApartmentNumber}?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes)
+                {
+                    return;
+                }
+                using (var ctx = new PeopleContextFactory().CreateDbContext(null))
+                {
+                    ctx.Remove(apt);
+                    ctx.SaveChanges();
+                    bindingSource1.Remove(apt);
+                }
+            }
         }
     }
 }

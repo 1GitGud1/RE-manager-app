@@ -28,6 +28,7 @@ namespace RE_manager
         {
             formApartmentsDisplay2 apartmentsDisplay = new formApartmentsDisplay2(this) { TopLevel = false, TopMost = true };
             apartmentsDisplay.FormBorderStyle = FormBorderStyle.None;
+            apartmentsDisplay.Dock = DockStyle.Fill;
             parentPanel.Controls.Add(apartmentsDisplay);
             apartmentsDisplay.Show();
             currentDisplay = apartmentsDisplay;
@@ -37,6 +38,7 @@ namespace RE_manager
             currentDisplay.Hide();
             formApartmentsDisplay2 apartmentsDisplay = new formApartmentsDisplay2(this) { TopLevel = false, TopMost = true };
             apartmentsDisplay.FormBorderStyle = FormBorderStyle.None;
+            apartmentsDisplay.Dock = DockStyle.Fill;
             parentPanel.Controls.Add(apartmentsDisplay);
             apartmentsDisplay.Show();
             currentDisplay = apartmentsDisplay;
@@ -47,6 +49,7 @@ namespace RE_manager
             currentDisplay.Hide();
             formPPMsDisplay2 ppmsDisplay = new formPPMsDisplay2(_buildingNumber) { TopLevel = false, TopMost = true };
             ppmsDisplay.FormBorderStyle = FormBorderStyle.None;
+            ppmsDisplay.Dock = DockStyle.Fill;
             parentPanel.Controls.Add(ppmsDisplay);
             ppmsDisplay.Show();
             currentDisplay = ppmsDisplay;
@@ -57,6 +60,7 @@ namespace RE_manager
             currentDisplay.Hide();
             formContractsDisplay2 contractsDisplay = new formContractsDisplay2(_buildingNumber) { TopLevel = false, TopMost = true };
             contractsDisplay.FormBorderStyle = FormBorderStyle.None;
+            contractsDisplay.Dock = DockStyle.Fill;
             parentPanel.Controls.Add(contractsDisplay);
             contractsDisplay.Show();
             currentDisplay = contractsDisplay;

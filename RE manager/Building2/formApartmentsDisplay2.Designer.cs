@@ -35,6 +35,7 @@
             dataGridView2 = new DataGridView();
             bindingSource2 = new BindingSource(components);
             button1 = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
@@ -83,11 +84,22 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // button2
+            // 
+            button2.Location = new Point(786, 570);
+            button2.Name = "button2";
+            button2.Size = new Size(175, 29);
+            button2.TabIndex = 5;
+            button2.Text = "Delete Record";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // formApartmentsDisplay2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1356, 678);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(dataGridView2);
             Controls.Add(btnViewServices);
@@ -110,5 +122,6 @@
         private DataGridView dataGridView2;
         private BindingSource bindingSource2;
         private Button button1;
+        private Button button2;
     }
 }

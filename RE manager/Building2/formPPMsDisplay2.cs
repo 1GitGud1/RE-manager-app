@@ -33,8 +33,10 @@ namespace RE_manager.Building2
             LoadData();
 
             dataGridView1.Columns["PPMId"].Visible = false;
+            dataGridView1.Columns["BuildingNumber"].Visible = false;
+            dataGridView1.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            if (dataGridView1.CurrentRow?.DataBoundItem is PPM ppm)
+            if (dataGridView1.Rows.Count > 1)
             {
                 dataGridView2.Columns["PPMId"].Visible = false;
                 dataGridView2.Columns["Id"].Visible = false;

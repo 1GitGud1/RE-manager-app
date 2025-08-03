@@ -52,11 +52,12 @@
             // 
             // dataGridView2
             // 
+            dataGridView2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(967, 0);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(390, 678);
+            dataGridView2.Size = new Size(389, 678);
             dataGridView2.TabIndex = 5;
             dataGridView2.RowValidated += dataGridView2_RowValidated;
             // 
