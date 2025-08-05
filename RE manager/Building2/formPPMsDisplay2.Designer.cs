@@ -33,41 +33,58 @@
             dataGridView2 = new DataGridView();
             bindingSource1 = new BindingSource(components);
             bindingSource2 = new BindingSource(components);
+            tableLayoutPanel1 = new TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource2).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(0, 0);
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(3, 3);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(961, 678);
+            dataGridView1.Size = new Size(956, 672);
             dataGridView1.TabIndex = 2;
             dataGridView1.RowValidated += dataGridView1_RowValidated;
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             // 
             // dataGridView2
             // 
-            dataGridView2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(967, 0);
+            dataGridView2.Dock = DockStyle.Fill;
+            dataGridView2.Location = new Point(965, 3);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.RowHeadersWidth = 51;
-            dataGridView2.Size = new Size(389, 678);
+            dataGridView2.Size = new Size(388, 672);
             dataGridView2.TabIndex = 5;
             dataGridView2.RowValidated += dataGridView2_RowValidated;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 71F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 29F));
+            tableLayoutPanel1.Controls.Add(dataGridView2, 1, 0);
+            tableLayoutPanel1.Controls.Add(dataGridView1, 0, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(1356, 678);
+            tableLayoutPanel1.TabIndex = 6;
             // 
             // formPPMsDisplay2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1356, 678);
-            Controls.Add(dataGridView2);
-            Controls.Add(dataGridView1);
+            Controls.Add(tableLayoutPanel1);
             Name = "formPPMsDisplay2";
             Text = "formPPMsDisplay2";
             Load += formPPMsDisplay2_Load;
@@ -75,6 +92,7 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource2).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -84,5 +102,6 @@
         private DataGridView dataGridView2;
         private BindingSource bindingSource1;
         private BindingSource bindingSource2;
+        private TableLayoutPanel tableLayoutPanel1;
     }
 }

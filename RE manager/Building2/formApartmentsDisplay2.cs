@@ -18,6 +18,8 @@ namespace RE_manager
     {
         private int _apartmentNumber;
         private int _buildingNumber;
+
+        private double _buttonXRatio;
         public formApartmentsDisplay2()
         {
             InitializeComponent();
@@ -29,7 +31,11 @@ namespace RE_manager
             building2 = callingForm as formBuilding2;
             _buildingNumber = building2._buildingNumber;
             InitializeComponent();
+
+            _buttonXRatio = 0.71;//(double)button2.Left / this.ClientSize.Width;
+
             dataGridView1.MultiSelect = false;
+
         }
 
         private void formApartmentsDisplay2_Load(object sender, EventArgs e)
@@ -165,6 +171,12 @@ namespace RE_manager
                     bindingSource1.Remove(apt);
                 }
             }
+        }
+
+        private void formApartmentsDisplay2_Resize(object sender, EventArgs e)
+        {
+            int newX = (int)(this.ClientSize.Width * _buttonXRatio) - 177;
+            button2.Location = new Point(newX, button2.Location.Y);
         }
     }
 }
