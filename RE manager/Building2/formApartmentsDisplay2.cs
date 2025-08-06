@@ -129,6 +129,7 @@ namespace RE_manager
                 this.Hide();
                 formApartmentSevicesDisplay2 apartmentServicesDisplay = new formApartmentSevicesDisplay2(apt.ApartmentNumber, apt.BuildingNumber) { TopLevel = false, TopMost = true };
                 apartmentServicesDisplay.FormBorderStyle = FormBorderStyle.None;
+                apartmentServicesDisplay.Dock = DockStyle.Fill;
                 building2.LoadFormInPanel(apartmentServicesDisplay);
             }
         }
@@ -152,6 +153,7 @@ namespace RE_manager
             this.Hide();
             formApartmentPPMsDisplay2 apartmentPPMsDisplay = new formApartmentPPMsDisplay2(_buildingNumber) { TopLevel = false, TopMost = true };
             apartmentPPMsDisplay.FormBorderStyle = FormBorderStyle.None;
+            apartmentPPMsDisplay.Dock = DockStyle.Fill;
             building2.LoadFormInPanel(apartmentPPMsDisplay);
         }
 

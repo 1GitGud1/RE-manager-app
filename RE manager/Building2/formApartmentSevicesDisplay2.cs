@@ -29,6 +29,7 @@ namespace RE_manager
             dataGridView1.DataSource = bindingSource1;
             LoadData();
             dataGridView1.Columns["ApartmentNumber"].Visible = false;
+            dataGridView1.Columns["BuildingNumber"].Visible = false;
         }
 
         private void LoadData()

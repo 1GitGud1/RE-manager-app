@@ -24,6 +24,7 @@ namespace RE_manager
         {
             formDashboardDisplay dashboardDisplay = new formDashboardDisplay() { TopLevel = false, TopMost = true };
             dashboardDisplay.FormBorderStyle = FormBorderStyle.None;
+            dashboardDisplay.Dock = DockStyle.Fill;
             parentPanel.Controls.Add(dashboardDisplay);
             dashboardDisplay.Show();
         }

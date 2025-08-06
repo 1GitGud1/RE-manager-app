@@ -180,6 +180,7 @@
             // 
             // parentPanel
             // 
+            parentPanel.BackColor = SystemColors.ActiveCaption;
             parentPanel.Dock = DockStyle.Fill;
             parentPanel.Location = new Point(250, 39);
             parentPanel.Name = "parentPanel";
