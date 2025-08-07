@@ -45,7 +45,9 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(1370, 809);
             dataGridView1.TabIndex = 1;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.RowValidated += dataGridView1_RowValidated;
+            dataGridView1.Scroll += dataGridView1_Scroll;
             // 
             // formApartmentPPMsDisplay2
             // 
@@ -56,6 +58,7 @@
             Name = "formApartmentPPMsDisplay2";
             Text = "formApartmentPPMsDisplay2";
             Load += formApartmentPPMsDisplay2_Load;
+            Resize += formApartmentPPMsDisplay2_Resize;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);

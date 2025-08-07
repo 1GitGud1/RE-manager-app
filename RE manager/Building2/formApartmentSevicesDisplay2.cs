@@ -16,11 +16,24 @@ namespace RE_manager
     {
         private readonly int _apartmentNumber;
         private readonly int _buildingNumber;
+
+        DateTimePicker _datePicker = new DateTimePicker();
+        Rectangle _dateRect = new Rectangle();
         public formApartmentSevicesDisplay2(int apartmentNumber, int buildingNumber)
         {
             InitializeComponent();
             _apartmentNumber = apartmentNumber;
             _buildingNumber = buildingNumber;
+
+            dataGridView1.Controls.Add(_datePicker);
+            _datePicker.Visible = false;
+            _datePicker.Format = DateTimePickerFormat.Custom;
+            _datePicker.TextChanged += new EventHandler(_datePicker_TextChange);
+        }
+
+        private void _datePicker_TextChange(Object sender, EventArgs e)
+        {
+            dataGridView1.CurrentCell.Value = _datePicker.Text.ToString();
         }
 
         private void formApartmentSevicesDisplay2_Load(object sender, EventArgs e)
@@ -57,6 +70,40 @@ namespace RE_manager
                     ctx.ApartmentServices2.Update(edited);
                     ctx.SaveChanges();
                 }
+            }
+        }
+
+        private void formApartmentSevicesDisplay2_Resize(object sender, EventArgs e)
+        {
+            _datePicker.Visible = false;
+        }
+
+        private void dataGridView1_Scroll(object sender, ScrollEventArgs e)
+        {
+            _datePicker.Visible = false;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                switch (dataGridView1.Columns[e.ColumnIndex].Name)
+                {
+                    case "ServiceDate":
+                        _dateRect = dataGridView1.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+                        _datePicker.Size = new Size(19, _dateRect.Height);
+                        _datePicker.Location = new Point(_dateRect.X + _dateRect.Width - 20, _dateRect.Y);
+                        _datePicker.Visible = true;
+                        break;
+
+                    default:
+                        _datePicker.Visible = false;
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                _datePicker.Visible = false;
             }
         }
     }

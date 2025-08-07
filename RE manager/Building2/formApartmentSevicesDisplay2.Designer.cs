@@ -44,7 +44,9 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(1370, 809);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.RowValidated += dataGridView1_RowValidated;
+            dataGridView1.Scroll += dataGridView1_Scroll;
             // 
             // formApartmentSevicesDisplay2
             // 
@@ -55,6 +57,7 @@
             Name = "formApartmentSevicesDisplay2";
             Text = "formApartmentSevicesDisplay2";
             Load += formApartmentSevicesDisplay2_Load;
+            Resize += formApartmentSevicesDisplay2_Resize;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
             ResumeLayout(false);

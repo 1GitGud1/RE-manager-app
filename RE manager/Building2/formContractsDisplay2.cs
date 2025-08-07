@@ -36,11 +36,11 @@ namespace RE_manager.Building2
             dataGridView1.Columns["BuildingNumber"].Visible = false;
             dataGridView1.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            if (dataGridView1.Rows.Count > 1)
-            {
-                dataGridView2.Columns["ContractId"].Visible = false;
-                dataGridView2.Columns["Id"].Visible = false;
-            }
+            //if (dataGridView1.Rows.Count > 1)
+            //{
+            //    dataGridView2.Columns["ContractId"].Visible = false;
+            //    dataGridView2.Columns["Id"].Visible = false;
+            //}
         }
 
         private void LoadData()
@@ -87,6 +87,9 @@ namespace RE_manager.Building2
             {
                 _contractNumber = contract.ContractId;
                 LoadDues(_contractNumber);
+
+                dataGridView2.Columns["ContractId"].Visible = false;
+                dataGridView2.Columns["Id"].Visible = false;
             }
         }
 

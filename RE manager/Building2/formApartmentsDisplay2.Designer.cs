@@ -54,7 +54,9 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(956, 558);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.RowValidated += dataGridView1_RowValidated;
+            dataGridView1.Scroll += dataGridView1_Scroll;
             dataGridView1.SelectionChanged += dataGridView1_SelectionChanged;
             // 
             // btnViewServices
@@ -79,7 +81,9 @@
             dataGridView2.RowHeadersWidth = 51;
             dataGridView2.Size = new Size(388, 558);
             dataGridView2.TabIndex = 3;
+            dataGridView2.CellClick += dataGridView2_CellClick;
             dataGridView2.RowValidated += dataGridView2_RowValidated;
+            dataGridView2.Scroll += dataGridView2_Scroll;
             // 
             // button1
             // 
