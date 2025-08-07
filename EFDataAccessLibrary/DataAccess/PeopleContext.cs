@@ -46,7 +46,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = a.BuildingNumber,
                     About = a.ApartmentNumber.ToString(),
                     EventDate = a.ContractEndDate,
-                    Description = "Tenancy Deadline"
+                    Description = "Tenancy Deadline",
+                    EventTime = TimeSpan.Zero
                 });
 
             var chequeAlerts = ApartmentCheques2
@@ -56,7 +57,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = c.BuildingNumber,
                     About = c.ApartmentNumber.ToString(),
                     EventDate = c.DueDate,
-                    Description = "Cheque Payment Due"
+                    Description = "Cheque Payment Due",
+                    EventTime = TimeSpan.Zero
                 });
 
             var serviceAlerts = ApartmentServices2
@@ -66,7 +68,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = c.BuildingNumber,
                     About = c.ApartmentNumber.ToString(),
                     EventDate = c.ServiceDate,
-                    Description = c.Description
+                    Description = c.Description,
+                    EventTime = c.Time
                 });
 
             var Q1PPMAlerts = ApartmentPPMs2
@@ -76,7 +79,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q1Date,
-                    Description = "AC cleaning Q1"
+                    Description = "AC cleaning Q1",
+                    EventTime = p.Q1Time
                 });
 
             var Q2PPMAlerts = ApartmentPPMs2
@@ -86,7 +90,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q2Date,
-                    Description = "AC cleaning Q2"
+                    Description = "AC cleaning Q2",
+                    EventTime = p.Q2Time
                 });
 
             var Q3PPMAlerts = ApartmentPPMs2
@@ -96,7 +101,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q3Date,
-                    Description = "AC cleaning Q3"
+                    Description = "AC cleaning Q3",
+                    EventTime = p.Q3Time
                 });
 
             var Q4PPMAlerts = ApartmentPPMs2
@@ -106,7 +112,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q4Date,
-                    Description = "AC cleaning Q4"
+                    Description = "AC cleaning Q4",
+                    EventTime = p.Q4Time
                 });
 
             var contractDueAlerts = ContractDues2
@@ -120,7 +127,8 @@ namespace EFDataAccessLibrary.DataAccess
                         BuildingNumber = contract.BuildingNumber,
                         About = contract.Company,
                         EventDate = due.DueDate,
-                        Description = "Contract Payment Due"
+                        Description = "Contract Payment Due",
+                        EventTime = TimeSpan.Zero
                     });
 
             var PPMAlerts = PPMtimes2
@@ -134,7 +142,8 @@ namespace EFDataAccessLibrary.DataAccess
                         BuildingNumber = ppm.BuildingNumber,
                         About = ppm.Title,
                         EventDate = time.StartDate,
-                        Description = "PPM Due"
+                        Description = "PPM Due",
+                        EventTime = TimeSpan.Zero
                     });
 
             return tenancyAlerts
@@ -147,6 +156,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Union(contractDueAlerts)
                 .Union(PPMAlerts)
                 .OrderByDescending(a => a.EventDate)
+                .ThenBy(a => a.EventTime)
                 .ToList();
         }
 
@@ -161,7 +171,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = a.BuildingNumber,
                     About = a.ApartmentNumber.ToString(),
                     EventDate = a.ContractEndDate,
-                    Description = "Tenancy Deadline"
+                    Description = "Tenancy Deadline",
+                    EventTime = TimeSpan.Zero
                 });
 
             var chequeAlerts = ApartmentCheques2
@@ -171,7 +182,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = c.BuildingNumber,
                     About = c.ApartmentNumber.ToString(),
                     EventDate = c.DueDate,
-                    Description = "Cheque Payment Due"
+                    Description = "Cheque Payment Due",
+                    EventTime = TimeSpan.Zero
                 });
 
             var serviceAlerts = ApartmentServices2
@@ -181,7 +193,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = c.BuildingNumber,
                     About = c.ApartmentNumber.ToString(),
                     EventDate = c.ServiceDate,
-                    Description = c.Description
+                    Description = c.Description,
+                    EventTime = c.Time
                 });
 
             var Q1PPMAlerts = ApartmentPPMs2
@@ -191,7 +204,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q1Date,
-                    Description = "AC cleaning Q1"
+                    Description = "AC cleaning Q1",
+                    EventTime = p.Q1Time
                 });
 
             var Q2PPMAlerts = ApartmentPPMs2
@@ -201,7 +215,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q2Date,
-                    Description = "AC cleaning Q2"
+                    Description = "AC cleaning Q2",
+                    EventTime = p.Q2Time
                 });
 
             var Q3PPMAlerts = ApartmentPPMs2
@@ -211,7 +226,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q3Date,
-                    Description = "AC cleaning Q3"
+                    Description = "AC cleaning Q3",
+                    EventTime = p.Q3Time
                 });
 
             var Q4PPMAlerts = ApartmentPPMs2
@@ -221,7 +237,8 @@ namespace EFDataAccessLibrary.DataAccess
                     BuildingNumber = p.BuildingNumber,
                     About = p.ApartmentNumber.ToString(),
                     EventDate = p.Q4Date,
-                    Description = "AC cleaning Q4"
+                    Description = "AC cleaning Q4",
+                    EventTime = p.Q4Time
                 });
 
             var contractDueAlerts = ContractDues2
@@ -235,7 +252,8 @@ namespace EFDataAccessLibrary.DataAccess
                         BuildingNumber = contract.BuildingNumber,
                         About = contract.Company,
                         EventDate = due.DueDate,
-                        Description = "Contract Payment Due"
+                        Description = "Contract Payment Due",
+                        EventTime = TimeSpan.Zero
                     });
 
             var PPMAlerts = PPMtimes2
@@ -249,7 +267,8 @@ namespace EFDataAccessLibrary.DataAccess
                         BuildingNumber = ppm.BuildingNumber,
                         About = ppm.Title,
                         EventDate = time.StartDate,
-                        Description = "PPM Due"
+                        Description = "PPM Due",
+                        EventTime = TimeSpan.Zero
                     });
 
             return tenancyAlerts
@@ -262,6 +281,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Union(contractDueAlerts)
                 .Union(PPMAlerts)
                 .OrderByDescending(a => a.EventDate)
+                .ThenBy(a => a.EventTime)
                 .ToList();
         }
 

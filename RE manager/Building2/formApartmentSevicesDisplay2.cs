@@ -30,6 +30,7 @@ namespace RE_manager
             LoadData();
             dataGridView1.Columns["ApartmentNumber"].Visible = false;
             dataGridView1.Columns["BuildingNumber"].Visible = false;
+            dataGridView1.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         private void LoadData()

@@ -31,6 +31,7 @@ namespace RE_manager.Building2
             LoadData();
 
             dataGridView1.Columns["Apartment"].Visible = false;
+            dataGridView1.Columns["BuildingNumber"].Visible = false;
         }
 
         private void LoadData()
