@@ -19,6 +19,7 @@ namespace RE_manager
     {
         private int _apartmentNumber;
         private int _buildingNumber;
+        bool isFirstRecord;
 
         private double _buttonXRatio;
 
@@ -59,7 +60,7 @@ namespace RE_manager
 
         private void _datePicker2_TextChange(Object sender, EventArgs e)
         {
-            dataGridView2.CurrentCell.Value = _datePicker.Text.ToString();
+            dataGridView2.CurrentCell.Value = _datePicker2.Text.ToString();
         }
 
         private void formApartmentsDisplay2_Load(object sender, EventArgs e)
@@ -75,12 +76,15 @@ namespace RE_manager
             dataGridView1.Columns["PPM"].Visible = false;
             dataGridView1.Columns["BuildingNumber"].Visible = false;
 
-            //if (dataGridView1.Rows.Count > 1)
-            //{
-            //    dataGridView2.Columns["ApartmentNumber"].Visible = false;
-            //    dataGridView2.Columns["Id"].Visible = false;
-            //    dataGridView2.Columns["BuildingNumber"].Visible = false;
-            //}
+            if (dataGridView1.Rows.Count > 1)
+            {
+                dataGridView2.Columns["ApartmentNumber"].Visible = false;
+                dataGridView2.Columns["Id"].Visible = false;
+                dataGridView2.Columns["BuildingNumber"].Visible = false;
+            } else
+            {
+                isFirstRecord = true;
+            }
         }
 
         private void LoadData()
@@ -144,9 +148,13 @@ namespace RE_manager
                 _apartmentNumber = apt.ApartmentNumber;
                 LoadCheques(apt.ApartmentNumber);
 
-                dataGridView2.Columns["ApartmentNumber"].Visible = false;
-                dataGridView2.Columns["Id"].Visible = false;
-                dataGridView2.Columns["BuildingNumber"].Visible = false;
+                if (isFirstRecord)
+                {
+                    isFirstRecord = false;
+                    dataGridView2.Columns["ApartmentNumber"].Visible = false;
+                    dataGridView2.Columns["Id"].Visible = false;
+                    dataGridView2.Columns["BuildingNumber"].Visible = false;
+                }
             }
         }
 
