@@ -3,7 +3,6 @@ using System;
 using EFDataAccessLibrary.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -12,65 +11,26 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFDataAccessLibrary.Migrations
 {
     [DbContext(typeof(PeopleContext))]
-    [Migration("20250719104326_PPMsModified")]
-    partial class PPMsModified
+    [Migration("20250809102916_SQLiteIni")]
+    partial class SQLiteIni
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("EFDataAccessLibrary.Models.Address", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("State")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("StreetAddress")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("Addresses");
-                });
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.8");
 
             modelBuilder.Entity("EFDataAccessLibrary.Models.Apartment", b =>
                 {
+                    b.Property<int>("BuildingNumber")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("ApartmentNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Amount")
                         .HasMaxLength(50)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ContractEndDate")
                         .HasColumnType("date");
@@ -80,17 +40,17 @@ namespace EFDataAccessLibrary.Migrations
 
                     b.Property<int>("Deposit")
                         .HasMaxLength(50)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("Ejari")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("TenantName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("TEXT");
 
-                    b.HasKey("ApartmentNumber");
+                    b.HasKey("BuildingNumber", "ApartmentNumber");
 
                     b.ToTable("Apartments2");
                 });
@@ -99,58 +59,121 @@ namespace EFDataAccessLibrary.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Amount")
                         .HasMaxLength(50)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("ApartmentBuildingNumber")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ApartmentNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("ApartmentNumber1")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BuildingNumber")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("date");
 
                     b.Property<bool>("IsCashed")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApartmentNumber1");
+                    b.HasIndex("ApartmentBuildingNumber", "ApartmentNumber1");
 
                     b.ToTable("ApartmentCheques2");
+                });
+
+            modelBuilder.Entity("EFDataAccessLibrary.Models.ApartmentPPM", b =>
+                {
+                    b.Property<int>("BuildingNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ApartmentNumber")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Q1Date")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("Q1Done")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<TimeSpan>("Q1Time")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Q2Date")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("Q2Done")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<TimeSpan>("Q2Time")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Q3Date")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("Q3Done")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<TimeSpan>("Q3Time")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Q4Date")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("Q4Done")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<TimeSpan>("Q4Time")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("BuildingNumber", "ApartmentNumber");
+
+                    b.ToTable("ApartmentPPMs2");
                 });
 
             modelBuilder.Entity("EFDataAccessLibrary.Models.ApartmentService", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<int?>("ApartmentBuildingNumber")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ApartmentNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("ApartmentNumber1")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BuildingNumber")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Done")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ServiceDate")
                         .HasColumnType("date");
 
+                    b.Property<TimeSpan>("Time")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ApartmentNumber1");
+                    b.HasIndex("ApartmentBuildingNumber", "ApartmentNumber1");
 
                     b.ToTable("ApartmentServices2");
                 });
@@ -159,23 +182,25 @@ namespace EFDataAccessLibrary.Migrations
                 {
                     b.Property<int>("ContractId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ContractId"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Amount")
                         .HasMaxLength(50)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BuildingNumber")
+                        .HasMaxLength(50)
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Company")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("date");
@@ -192,22 +217,20 @@ namespace EFDataAccessLibrary.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Amount")
                         .HasMaxLength(50)
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ContractId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("date");
 
                     b.Property<bool>("IsPaid")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -216,46 +239,25 @@ namespace EFDataAccessLibrary.Migrations
                     b.ToTable("ContractDues2");
                 });
 
-            modelBuilder.Entity("EFDataAccessLibrary.Models.Email", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("EmailAddress")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("EmailAddresses");
-                });
-
             modelBuilder.Entity("EFDataAccessLibrary.Models.PPM", b =>
                 {
                     b.Property<int>("PPMId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PPMId"));
+                    b.Property<int>("BuildingNumber")
+                        .HasMaxLength(50)
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("PPMId");
 
@@ -266,18 +268,19 @@ namespace EFDataAccessLibrary.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("EndDate")
                         .HasColumnType("date");
 
                     b.Property<bool>("IsDone")
-                        .HasColumnType("bit");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("PPMId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("date");
 
                     b.HasKey("Id");
 
@@ -286,51 +289,29 @@ namespace EFDataAccessLibrary.Migrations
                     b.ToTable("PPMtimes2");
                 });
 
-            modelBuilder.Entity("EFDataAccessLibrary.Models.Person", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("People");
-                });
-
-            modelBuilder.Entity("EFDataAccessLibrary.Models.Address", b =>
-                {
-                    b.HasOne("EFDataAccessLibrary.Models.Person", null)
-                        .WithMany("Addresses")
-                        .HasForeignKey("PersonId");
-                });
-
             modelBuilder.Entity("EFDataAccessLibrary.Models.ApartmentCheque", b =>
                 {
                     b.HasOne("EFDataAccessLibrary.Models.Apartment", null)
                         .WithMany("ApartmentCheques")
-                        .HasForeignKey("ApartmentNumber1");
+                        .HasForeignKey("ApartmentBuildingNumber", "ApartmentNumber1");
+                });
+
+            modelBuilder.Entity("EFDataAccessLibrary.Models.ApartmentPPM", b =>
+                {
+                    b.HasOne("EFDataAccessLibrary.Models.Apartment", "Apartment")
+                        .WithOne("PPM")
+                        .HasForeignKey("EFDataAccessLibrary.Models.ApartmentPPM", "BuildingNumber", "ApartmentNumber")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Apartment");
                 });
 
             modelBuilder.Entity("EFDataAccessLibrary.Models.ApartmentService", b =>
                 {
                     b.HasOne("EFDataAccessLibrary.Models.Apartment", null)
                         .WithMany("ApartmentServices")
-                        .HasForeignKey("ApartmentNumber1");
+                        .HasForeignKey("ApartmentBuildingNumber", "ApartmentNumber1");
                 });
 
             modelBuilder.Entity("EFDataAccessLibrary.Models.ContractDue", b =>
@@ -340,13 +321,6 @@ namespace EFDataAccessLibrary.Migrations
                         .HasForeignKey("ContractId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("EFDataAccessLibrary.Models.Email", b =>
-                {
-                    b.HasOne("EFDataAccessLibrary.Models.Person", null)
-                        .WithMany("EmailAddresses")
-                        .HasForeignKey("PersonId");
                 });
 
             modelBuilder.Entity("EFDataAccessLibrary.Models.PPMtime", b =>
@@ -363,6 +337,8 @@ namespace EFDataAccessLibrary.Migrations
                     b.Navigation("ApartmentCheques");
 
                     b.Navigation("ApartmentServices");
+
+                    b.Navigation("PPM");
                 });
 
             modelBuilder.Entity("EFDataAccessLibrary.Models.Contract", b =>
@@ -373,13 +349,6 @@ namespace EFDataAccessLibrary.Migrations
             modelBuilder.Entity("EFDataAccessLibrary.Models.PPM", b =>
                 {
                     b.Navigation("PPMtimes");
-                });
-
-            modelBuilder.Entity("EFDataAccessLibrary.Models.Person", b =>
-                {
-                    b.Navigation("Addresses");
-
-                    b.Navigation("EmailAddresses");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EFDataAccessLibrary.Migrations;
+//using EFDataAccessLibrary.Migrations;
 using System.Reflection.Metadata;
 
 namespace EFDataAccessLibrary.DataAccess
@@ -14,9 +14,6 @@ namespace EFDataAccessLibrary.DataAccess
     public class PeopleContext : DbContext
     {
         public PeopleContext(DbContextOptions options) : base(options) { }
-        public DbSet<Person> People { get; set; }
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<Email> EmailAddresses { get; set; }
         public DbSet<Apartment> Apartments2 { get; set; }
         public DbSet<ApartmentPPM> ApartmentPPMs2 { get; set; }
         public DbSet<ApartmentService> ApartmentServices2 { get; set; }
@@ -155,6 +152,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Union(Q4PPMAlerts)
                 .Union(contractDueAlerts)
                 .Union(PPMAlerts)
+                .AsEnumerable()
                 .OrderByDescending(a => a.EventDate)
                 .ThenBy(a => a.EventTime)
                 .ToList();
@@ -280,6 +278,7 @@ namespace EFDataAccessLibrary.DataAccess
                 .Union(Q4PPMAlerts)
                 .Union(contractDueAlerts)
                 .Union(PPMAlerts)
+                .AsEnumerable()
                 .OrderByDescending(a => a.EventDate)
                 .ThenBy(a => a.EventTime)
                 .ToList();
@@ -289,13 +288,13 @@ namespace EFDataAccessLibrary.DataAccess
         {
             if (!optionsBuilder.IsConfigured)
             {
-                var connectionString = ConfigurationManager.ConnectionStrings["EFDemoDB"]?.ConnectionString;
-                if (string.IsNullOrEmpty(connectionString))
-                {
-                    throw new InvalidOperationException("Connection string 'EFDemoDb' not found.");
-                }
+                // Store the DB file in a location accessible for your app
+                var dbPath = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                    "MyPlannerApp.db"
+                );
 
-                optionsBuilder.UseSqlServer(connectionString);
+                optionsBuilder.UseSqlite($"Data Source={dbPath}");
             }
         }
         //=> optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=EFDemoDb;Integrated Security=True;");

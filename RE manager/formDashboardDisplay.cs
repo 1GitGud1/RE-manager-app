@@ -87,6 +87,7 @@ namespace RE_manager
         {
             using (var ctx = new PeopleContextFactory().CreateDbContext(null))
             {
+                ctx.Database.Migrate();
                 var today = DateTime.Today;
 
                 var eventDates = new HashSet<DateTime>();
